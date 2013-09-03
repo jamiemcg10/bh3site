@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Boston Hash House Harriers ~ A Drinking Club With A Running Problem</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css"></link>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="content">
+	    <div class="header">
+	        <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+	            <ul>
+	                <li class="<%= "pure-menu-selected" if params[:action] == "welcome" %>"><%= link_to "Home", root_url %></li>
+	                <li class="<%= "pure-menu-selected" if params[:action] == "about" %>"><a href="/static/about">About the BH3</a></li>
+	                <li class="<%= "pure-menu-selected" if params[:action] == "calendar" %>"><a href="/static/calendar">Calendar</a></li>
+	                <li class="<%= "pure-menu-selected" if params[:action] == "events" %>"><a href="/static/events">Events</a></li>
+	                <li class="<%= "pure-menu-selected" if params[:action] == "more" %>"><a href="/static/more">More info</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	    
+	    <%= yield :splash %>
+	
+		<div class="content">
+		  <div class="pure-g-r"> 
+		 		<%= yield %>
+		  </div>
+		</div>
+
+	    <div class="footer">
+	       Follow the Boston Hash House Harriers on <a href="https://twitter.com/bostonhash" target="_new">twitter</a>.
+	    </div>
+	
+  </div>
+
+
+</body>
+</html>
