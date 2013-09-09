@@ -1,12 +1,18 @@
+
 <div class="content-box">
-	  <div class="pure-u-2-3">
+	  <div class="pure-u-4-5">
             <div class="l-box">
                 <h4 class="content-subhead">Calendar</h4>
-
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>
-                    Pellentesque hendrerit lobortis ornare. Fusce luctus imperdiet consequat. Nullam quis nunc quis ligula luctus vestibulum non quis libero. Suspendisse tristique nisl ut velit facilisis sit amet lobortis nulla pharetra.
-                </p>
+				<script type='text/javascript'>
+				$(document).ready(function() {
+				    $('#calendar').fullCalendar({
+				        events: 'https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic'
+				    });
+					
+					$('#calendar a').attr('target','_new');
+				});
+				</script>
+<div id="calendar" class="l-box"></div>
             </div>
         </div>
 </div>
