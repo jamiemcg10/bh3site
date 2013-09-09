@@ -1,9 +1,11 @@
 Bh3site::Application.routes.draw do
 
+  get "/about" => "about#index"
+  get "about/history" 
+  
   root "static#welcome"
   get "static/welcome"
   get "static/more"
-  get "static/about"
   get "static/events"
   get "static/calendar"
 
