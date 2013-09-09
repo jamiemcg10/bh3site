@@ -4,4 +4,7 @@ class AboutController < ApplicationController
 
   def history
   end
+  
+  def mismanagement
+  end
 end

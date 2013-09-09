@@ -2,6 +2,7 @@ Bh3site::Application.routes.draw do
 
   get "/about" => "about#index"
   get "about/history" 
+  get "about/mismanagement" 
   
   root "static#welcome"
   get "static/welcome"

@@ -2,6 +2,7 @@
 			    <div class="pure-menu pure-menu-open pure-menu-vertical no-border l-box">
 			        <ul>
 			            <li class="<%= "pure-menu-selected" if params[:action] == "index" %>"><%= link_to "About the BH3", about_url %></li>
+						            <li class="<%= "pure-menu-selected" if params[:action] == "mismanagement" %>"><a href="/about/mismanagement">Boston H3 Mismanagement</a></li>
 			            <li class="<%= "pure-menu-selected" if params[:action] == "history" %>"><a href="/about/history">History of the Hash House Harriers</a></li>
 			        </ul>
 			    </div>
