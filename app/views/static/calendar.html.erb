@@ -6,13 +6,19 @@
 				<script type='text/javascript'>
 				$(document).ready(function() {
 				    $('#calendar').fullCalendar({
-				        events: 'https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic'
+				        events: 'https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic',
+					    eventClick: function(calEvent, jsEvent, view) {
+					      if (calEvent.url) {
+					            window.open(calEvent.url);
+					            return false;
+					        }
+					    }
+						
 				    });
-					
 				});
 				</script>
 				
-<div id="calendar" class="l-box overflow" style"z-index:-1"></div>
+				<div id="calendar" class="l-box"></div>
             </div>
         </div>
 </div>
