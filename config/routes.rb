@@ -1,14 +1,18 @@
 Bh3site::Application.routes.draw do
+  
+  root "static#welcome"
 
+# about routes
   get "/about" => "about#index"
   get "about/history" 
   get "about/mismanagement" 
   
-  root "static#welcome"
+# cal route
+  get "calendar" => "static#calendar"
+
   get "static/welcome"
   get "static/more"
   get "static/events"
-  get "static/calendar"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
