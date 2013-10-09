@@ -1,5 +1,8 @@
+require 'nokogiri'
+
 class StaticController < ApplicationController
   def welcome
+    
   end
   
   def more
@@ -12,5 +15,10 @@ class StaticController < ApplicationController
   end
   
   def events
+  end
+  
+  private 
+  def get_next_hash
+    
   end
 end
