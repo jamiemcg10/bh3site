@@ -22,3 +22,9 @@
 	position:absolute;
 	z-index: 10;
 }
+
+pre {
+	overflow:auto;
+	font-family: sans-serif;
+	padding-left: 7px;
+}

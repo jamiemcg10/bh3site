@@ -14,6 +14,15 @@ describe StaticController do
     end
   end
   
+  describe "get_next_hash" do
+    it "gets the next hash details from the google calendar" do
+      @controller = StaticController.new
+      hash = @controller.instance_eval{ get_next_hash } 
+      hash.should_not be_nil
+    end
+  
+  end
+  
   describe "GET #calendar" do
     it "responds successfully with an HTTP 200 status code" do
       get :calendar
