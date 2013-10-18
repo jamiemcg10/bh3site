@@ -6,10 +6,23 @@ class Event
   def initialize raw_xml
     # parse the event xml out into it's relevent parts
     doc = Nokogiri::XML(raw_xml)
-    @title = doc.xpath("//title").inner_text
-    @desc = doc.xpath("//content").inner_text
+    @gid = doc.xpath("//id").inner_text
     @summary = doc.xpath("//summary").inner_text
     @where = parse_where(@summary)
+    @hashevent = HashEvent.find_by_google_id(@gid)
+    if @hashevent == nil then
+       @hashevent = HashEvent.new
+       @hashevent.google_id = @gid
+       @hashevent.location =  @where
+       @hashevent.save
+    else
+      if @hashevent.location != @where then
+        @hashevent.location =  @where
+        @hashevent.save
+      end
+    end
+    @title = doc.xpath("//title").inner_text
+    @desc = doc.xpath("//content").inner_text
     @when = parse_when(@summary)
   end
   
@@ -28,6 +41,14 @@ class Event
   
   def where
     @where
+  end
+  
+  def latitude
+    @hashevent.latitude
+  end
+  
+  def longitude
+    @hashevent.longitude
   end
   
   private 

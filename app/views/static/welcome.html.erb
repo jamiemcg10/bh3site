@@ -13,23 +13,18 @@
 	  };
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	
-	  <% if @next_hash.where != "Boston, MA" then  %>
-		codeAddress('<%=@next_hash.where%>');
+	  <% if @next_hash.where != "Boston, MA" and @next_hash.latitude != nil and @next_hash.longitude != nil then  %>
+		codeAddress(<%=@next_hash.latitude%>,<%=@next_hash.longitude%>);
 	  <% end %>
 	}
 	
-	function codeAddress(postal) {
-	    geocoder.geocode( { 'address': postal + ", United States"}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK) {
-	        map.setCenter(results[0].geometry.location);
-	        var markerE = new google.maps.Marker({
-	            map: map,
-	            position: results[0].geometry.location,
-	        });
-	      } else {
-	        alert("Geocode was not successful for the following reason: " + status);
-	      }
-	    });
+	function codeAddress(latitude,longitude) {
+		var spot = new google.maps.LatLng(latitude,longitude);
+		map.setCenter(spot);
+        var markerE = new google.maps.Marker({
+            map: map,
+            position: spot
+        });
 	}
 	
 	google.maps.event.addDomListener(window, 'load', initialize);
