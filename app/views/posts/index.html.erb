@@ -1,0 +1,25 @@
+<div class="content-box">
+	  <div class="pure-u-4-5">
+            <div class="l-box">
+                <h4 class="content-subhead">Hash Trash</h4>
+				<p>Missed a hash?  Catch up on all the trash here...</p>
+				<% if @posts != nil and @posts.length > 0 then %>
+					<table class="pure-table">
+						<% @posts.each_with_index do |post, i| %>
+							<tr class=<%="pure-table-odd" if i % 2 == 1 %>>
+								<td><%= link_to post.title, post.link, :target => "_blank" %>
+							     (<%= time_ago_in_words(post.pubDate) %> ago via blog feed)
+								<br />
+								<%=raw(post.description)%>
+								</td>
+							</tr>	
+						<% end %>
+					</table>
+				<% else %>
+				<p>
+				  	<em>No hash trash to show.</em>
+				</p>
+				<% end %>
+            </div>
+        </div>
+</div>
