@@ -16860,6 +16860,10 @@ fc.gcalFeed = function(url, sourceOptions) {
 
 
 }).call(this);
+(function() {
+
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -16876,4 +16880,15 @@ fc.gcalFeed = function(url, sourceOptions) {
 
 
 
+function scrollToElement(id){
+	console.log('to ' + id);
+	$('body').animate({scrollTop: $('#' + id).position().top - 50},1000); 
+	return false;
+}
+
+function scrollToTop(){
+		console.log('to top');
+	$('body').animate({scrollTop: $('.content').position().top},1000); 
+	return false;
+}
 ;
