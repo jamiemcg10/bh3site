@@ -4,11 +4,17 @@
                 <h4 class="content-subhead">Hash Trash</h4>
 				<p>Missed a hash?  Catch up on all the trash here...</p>
 				<% if @posts != nil and @posts.length > 0 then %>
+				<p>
+					<% @posts.each_with_index do |post, i| %>
+				<a href="#" onclick="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
+					<% end %>
+				<%= link_to "More", hashtrash_path(page_number:@page_number+1)%>
+				</p>
 					<table class="pure-table">
 						<% @posts.each_with_index do |post, i| %>
-							<tr class=<%="pure-table-odd" if i % 2 == 1 %>>
+							<tr id="<%=post.title.gsub(/[^0-9a-z ]/i, '').gsub(/\s+/, "")%>">
 								<td><%= link_to post.title, post.link, :target => "_blank" %>
-							     (<%= time_ago_in_words(post.pubDate) %> ago via blog feed)
+							     (<%= time_ago_in_words(post.pubDate) %> ago) <a href="#" onclick="return scrollToTop();">back to top</a>
 								<br />
 								<%=raw(post.description)%>
 								</td>
@@ -23,3 +29,6 @@
             </div>
         </div>
 </div>
+<% content_for :footer do %>
+ <%= javascript_include_tag params[:controller] %> 
+<% end %>

@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+function scrollToElement(id){
+	console.log('to ' + id);
+	$('body').animate({scrollTop: $('#' + id).position().top - 50},1000); 
+	return false;
+}
+
+function scrollToTop(){
+		console.log('to top');
+	$('body').animate({scrollTop: $('.content').position().top},1000); 
+	return false;
+}

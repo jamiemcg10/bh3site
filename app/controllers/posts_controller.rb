@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       begin
           latest_blog_posts = RSS::Parser.parse(open(@rss_url).read, false).items
         rescue => error
-          # Do nothing, just continue.  The view will skip the blog section if the feed is nil.
+          # Do nothing, just continue.  The view will skip the hash trash section if the feed is nil.
           latest_blog_posts = nil
         end
       return latest_blog_posts

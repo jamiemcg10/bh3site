@@ -15,7 +15,7 @@ Bh3site::Application.routes.draw do
   get "static/events"
   
   
-  get "posts/:page_number" => "posts#index"
+  get "posts/:page_number" => "posts#index", as: :hashtrash
   get "posts/index/:page_number" => "posts#index"
   get "posts" => "posts#index"
 
