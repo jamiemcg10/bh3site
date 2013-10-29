@@ -11,16 +11,22 @@
  *= require_self
  *= require_tree .
  */
-.pure-menu-selected a {
-	color: #E20825 !important;
+
+.top-menu {
+	padding:0;
+	margin: 0;
+	border-bottom: 1px solid #b7b7b7 !important;
+	width: 100%;
+	height: 55px;
+	display:table;
 }
 
-/*
-*	This will force the full calendar to scroll under the header as opposted to over it
-*/
-.header {
-	position:absolute;
-	z-index: 10;
+.top-menu-ul{
+	display: table-cell !important;
+}
+
+.pure-menu-selected a {
+	color: #E20825 !important;
 }
 
 pre {

@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="pure-u-3-5">
+        <div class="pure-u-3-5 full">
             <div class="l-box">
 				<div id="map-canvas" style="height:400px; width:100%"></div>
             </div>
@@ -65,7 +65,6 @@ function initialize() {
 }
 
 function setMapLink(){
-	console.log(map.mapUrl);
 	$("#where").attr('href',map.mapUrl);
 }
 function codeAddress(latitude,longitude) {
@@ -76,7 +75,7 @@ function codeAddress(latitude,longitude) {
         position: spot
     });
 	// the map properties don't seem to be available immediately, so delay this call 1/2 a secon
-	window.setTimeout(function() { setMapLink(); }, 500);
+	window.setTimeout(setMapLink, 500);
 }
 
 </script>

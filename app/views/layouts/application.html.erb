@@ -8,20 +8,22 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
   <%= csrf_meta_tags %>
   <%= yield :head %>
+<meta name="viewport" content="width=device-width">
 </head>
 <body>
+	<div class="pure-menu pure-menu-open top-menu pure-menu-horizontal">
+        <ul class="top-menu-ul">
+            <li class="<%= "pure-menu-selected" if params[:action] == "welcome" %>"><%= link_to "Home", root_url %></li>
+            <li class="<%= "pure-menu-selected" if params[:controller] == "about" %>"><a href="/about">About the BH3</a></li>
+            <li class="<%= "pure-menu-selected" if params[:action] == "calendar" %>"><a href="/calendar">Calendar</a></li>
+            <li class="<%= "pure-menu-selected" if params[:action] == "events" %>"><a href="/static/events">Events</a></li>
+			<li class="<%= "pure-menu-selected" if params[:action] == "posts" %>"><a href="/posts">Hash Trash</a></li>
+            <li class="<%= "pure-menu-selected" if params[:action] == "more" %>"><a href="/static/more">More info</a></li>
+        </ul>
+    </div>
   <div class="content">
 	    <div class="header">
-	        <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
-	            <ul>
-	                <li class="<%= "pure-menu-selected" if params[:action] == "welcome" %>"><%= link_to "Home", root_url %></li>
-	                <li class="<%= "pure-menu-selected" if params[:controller] == "about" %>"><a href="/about">About the BH3</a></li>
-	                <li class="<%= "pure-menu-selected" if params[:action] == "calendar" %>"><a href="/calendar">Calendar</a></li>
-	                <li class="<%= "pure-menu-selected" if params[:action] == "events" %>"><a href="/static/events">Events</a></li>
-					<li class="<%= "pure-menu-selected" if params[:action] == "posts" %>"><a href="/posts">Hash Trash</a></li>
-	                <li class="<%= "pure-menu-selected" if params[:action] == "more" %>"><a href="/static/more">More info</a></li>
-	            </ul>
-	        </div>
+
 	    </div>
 	    
 	    <%= yield :splash %>
