@@ -7,15 +7,16 @@
 				<p>
 				<%if @page_number != 1%><a href="<%=hashtrash_path(page_number:@page_number-1)%>"><i class="fa fa-arrow-left"></i></a> | <%end%>	
 					<% @posts.each_with_index do |post, i| %>
-				<a href="#" onclick="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
+						<a href="#" title="previous page of hash trashes" 
+						click="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
 					<% end %>
-					<a href="<%=hashtrash_path(page_number:@page_number+1)%>"><i class="fa fa-arrow-right"></i></a>
+					<a title="next page of hash trashes" href="<%=hashtrash_path(page_number:@page_number+1)%>"><i class="fa fa-arrow-right"></i></a>
 				</p>
 					<table class="pure-table">
 						<% @posts.each_with_index do |post, i| %>
 							<tr id="<%=post.title.gsub(/[^0-9a-z ]/i, '').gsub(/\s+/, "")%>">
 								<td><%= link_to post.title, post.link, :target => "_blank" %>
-							     (<%= time_ago_in_words(post.pubDate) %> ago) <% if i!=0%><a href="#" onclick="return scrollToTop();"><i class="fa fa-arrow-up"></i></a><%end%>
+							     (<%= time_ago_in_words(post.pubDate) %> ago) <% if i!=0%><a href="#" title="back to top" onclick="return scrollToTop();"><i class="fa fa-arrow-up"></i></a><%end%>
 								<br />
 								<%=raw(post.description)%>
 								</td>

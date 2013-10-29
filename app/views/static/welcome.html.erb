@@ -4,7 +4,7 @@
 <% content_for :splash do %>
 	<div class="splash">
     <div class="pure-g-r">
-        <div class="pure-u-1-3">
+        <div class="pure-u-1-3 full">
             <div class="l-box splash-image">
                 <img src="http://placehold.it/500x350"
                      alt="Placeholder image for example.">
@@ -34,7 +34,7 @@
                 <h4 class="content-subhead">Join us on our next hash!</h4>
 				<h3><%= raw @next_hash.title%></h3>
                 <h4>When:  <%=@next_hash.when.to_formatted_s(:long)%> (HST) </h4>
-				<h4>Where: <%= raw @next_hash.where%></h4>
+				<h4>Where: <a id="where" href="#" target="_new"><%= raw @next_hash.where%></a></h4>
 				<h4>Details:</h4><pre><%=@next_hash.description.strip.html_safe%></pre>
             </div>
         </div>
@@ -45,7 +45,7 @@
             </div>
         </div>
 <% content_for :footer do %>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
 <script type="text/javascript">
 var map;
 var init = 0;
@@ -59,12 +59,15 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
   <% if @next_hash.where != "Boston, MA" and @next_hash.latitude != nil and @next_hash.longitude != nil then  %>
 	codeAddress(<%=@next_hash.latitude%>,<%=@next_hash.longitude%>);
   <% end %>
 }
 
+function setMapLink(){
+	console.log(map.mapUrl);
+	$("#where").attr('href',map.mapUrl);
+}
 function codeAddress(latitude,longitude) {
 	var spot = new google.maps.LatLng(latitude,longitude);
 	map.setCenter(spot);
@@ -72,9 +75,9 @@ function codeAddress(latitude,longitude) {
         map: map,
         position: spot
     });
+	// the map properties don't seem to be available immediately, so delay this call 1/2 a secon
+	window.setTimeout(function() { setMapLink(); }, 500);
 }
-
-initialize();
 
 </script>
 <% end %>
