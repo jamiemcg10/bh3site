@@ -7,8 +7,8 @@
 				<p>
 				<%if @page_number != 1%><a href="<%=hashtrash_path(page_number:@page_number-1)%>"><i class="fa fa-arrow-left"></i></a> | <%end%>	
 					<% @posts.each_with_index do |post, i| %>
-						<a href="#" title="previous page of hash trashes" 
-						click="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
+					<a href="#" title="previous page of hash trashes" 
+						onclick="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
 					<% end %>
 					<a title="next page of hash trashes" href="<%=hashtrash_path(page_number:@page_number+1)%>"><i class="fa fa-arrow-right"></i></a>
 				</p>
@@ -31,6 +31,3 @@
             </div>
         </div>
 </div>
-<% content_for :footer do %>
- <%= javascript_include_tag params[:controller] %> 
-<% end %>

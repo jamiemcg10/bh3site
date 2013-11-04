@@ -35,17 +35,16 @@ var $isMobile = {
     }
 };
 
+function scrollToTop(){
+	$('body').animate({scrollTop: 0},1000); 
+	return false;
+}
+
 function scrollToElement(id){
-	console.log('to ' + id);
 	$('body').animate({scrollTop: $('#' + id).position().top - 50},1000); 
 	return false;
 }
 
-function scrollToTop(){
-		console.log('to top');
-	$('body').animate({scrollTop: 0},1000); 
-	return false;
-}
 
 $(document).ready(function(){
 	if(!$isMobile.any()) return;
