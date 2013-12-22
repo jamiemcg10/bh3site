@@ -12,6 +12,10 @@
  *= require_tree .
  */
 
+body {
+       font-family: "proxima-nova", sans-serif;
+}
+
 .top-menu {
 	padding:0;
 	margin: 0;
