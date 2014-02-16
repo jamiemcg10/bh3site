@@ -72,4 +72,13 @@ describe Event do
     end
     
   end
+  
+  describe "new event with nil when should return a valid object" do
+    xml = VALID_XML.sub(/When/m,'')
+    event = Event.new(xml)
+    it "is a valid event object" do
+      event.should_not be_nil
+    end
+  end
+  
 end

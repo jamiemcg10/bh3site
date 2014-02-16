@@ -54,8 +54,11 @@ class Event
   private 
     def parse_when(summary)
       # this is a bit ugly but will parse the start time from the summary string as not every event includes start-time
-      date_string = summary.match(/When:.*to/)[0].sub('When: ','').sub(' to','')
-      @when = date_string.to_datetime
+      when_string = summary.match(/When:.*to/)
+      if when_string then
+        date_string = summary.match(/When:.*to/)[0].sub('When: ','').sub(' to','')
+        @when = date_string.to_datetime
+      end
     end
     
     def parse_where(summary)
