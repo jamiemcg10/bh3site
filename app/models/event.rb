@@ -58,6 +58,8 @@ class Event
       if when_string then
         date_string = summary.match(/When:.*to/)[0].sub('When: ','').sub(' to','')
         @when = date_string.to_datetime
+      else
+        @when = DateTime.now
       end
     end
     

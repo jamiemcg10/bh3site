@@ -5,11 +5,11 @@
                 <h4 class="content-subhead">Calendar</h4>
 				<script type='text/javascript'>
 				// on mobile device only show 1 week
-				var view = $isMobile.any() ? 'basicWeek' : 'month';
+			//	var view = $isMobile.any() ? 'basicWeek' : 'month';
 				$(document).ready(function() {
 				    $('#calendar').fullCalendar({
 				        events: 'https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic',
-						defaultView: view,
+						defaultView: 'basicWeek',
 					    eventClick: function(calEvent, jsEvent, view) {
 					      if (calEvent.url) {
 					            window.open(calEvent.url);
@@ -25,3 +25,6 @@
         </div>
 </div>
 
+<% content_for :footer do %>
+  <%= javascript_include_tag "fullcalendar.min", "data-turbolinks-track" => true %>
+<% end %>

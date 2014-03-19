@@ -2,44 +2,76 @@
 <html>
 <head>
   <title>Boston Hash House Harriers ~ A Drinking Club With A Running Problem</title>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css"></link>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+<!-- bootstrap cdn-->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
   <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= yield :head %>
-<meta name="viewport" content="width=device-width">
 </head>
 <body>
-	<div class="pure-menu pure-menu-open top-menu pure-menu-horizontal">
-        <ul class="top-menu-ul">
-            <li class="<%= "pure-menu-selected" if params[:action] == "welcome" %>"><%= link_to "Home", root_url %></li>
-            <li class="<%= "pure-menu-selected" if params[:controller] == "about" %>"><a href="/about">About the BH3</a></li>
-            <li class="<%= "pure-menu-selected" if params[:action] == "calendar" %>"><a href="/calendar">Calendar</a></li>
-            <li class="<%= "pure-menu-selected" if params[:action] == "events" %>"><a href="/static/events">Events</a></li>
-			<li class="<%= "pure-menu-selected" if params[:controller] == "posts" %>"><a href="/posts">Hash Trash</a></li>
-            <li class="<%= "pure-menu-selected" if params[:controller] == "more" %>"><a href="/more">More info</a></li>
-        </ul>
+
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <%= link_to "Home", root_url, class: "navbar-brand" %>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+		            <li><a href="/about">About the BH3</a></li>
+		            <li><a href="/calendar">Calendar</a></li>
+		            <li><a href="/static/events">Events</a></li>
+					<li><a href="/posts">Hash Trash</a></li>
+		            <li><a href="/more">More info</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>Boston Hash House Harriers</h1>
+                <h2>A Drinking Club With A Running Problem</h2>
+            </div>
+        </div>
+
     </div>
-  <div class="content">
-	    <div class="header">
+    <!-- /header-image -->
 
-	    </div>
-	    
-	    <%= yield :splash %>
-	
-		<div class="content">
-		  <div class="pure-g-r"> 
-		 		<%= yield %>
-		  </div>
-		</div>
+    <div class="container">
 
-	    <div class="footer">
-	       Follow the Boston Hash House Harriers on <a href="https://twitter.com/bostonhash" target="_new">twitter</a>.
-	    </div>
-		<%= yield :footer %>
-  </div>
+	<%= yield %>
 
+    <hr />
 
+        <!-- FOOTER -->
+        <footer>
+<p>Follow the Boston Hash House Harriers on <a href="https://twitter.com/bostonhash" target="_new">twitter</a>.</p>
+<p>Copyright &copy; Boston Hash House Harriers 2014</p>
+        </footer>
+        <!-- /END OF FOOTER -->
+
+    </div>
+    <!-- /container -->
+
+    <!-- JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<%= yield :footer %>
 </body>
+
 </html>

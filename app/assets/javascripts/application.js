@@ -14,40 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-var $isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i);
-    },
-    any: function() {
-        return ($isMobile.Android() || $isMobile.BlackBerry() || $isMobile.iOS() || $isMobile.Opera() || $isMobile.Windows());
-    }
-};
 
-function scrollToTop(){
-	$('body').animate({scrollTop: 0},1000); 
-	return false;
-}
-
-function scrollToElement(id){
-	$('body').animate({scrollTop: $('#' + id).position().top - 50},1000); 
-	return false;
-}
-
-
-$(document).ready(function(){
-	if(!$isMobile.any()) return;
-	// for mobile devices, anything with a class of full should be hidden, only on displayed on full screens
-	$('.full').hide();
-});
+//= require posts
