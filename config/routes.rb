@@ -1,5 +1,7 @@
 Bh3site::Application.routes.draw do
 
+  resources :site_sections
+
   get "more/index"
   root "static#welcome"
 

@@ -1,0 +1,31 @@
+<h3>Listing site_sections</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tag</th>
+      <th>Data type</th>
+      <th>Value</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_sections.each do |site_section| %>
+      <tr>
+        <td><%= site_section.tag %></td>
+        <td><%= site_section.data_type %></td>
+        <td><%= site_section.value %></td>
+        <td><%= link_to 'Show', site_section %></td>
+        <td><%= link_to 'Edit', edit_site_section_path(site_section) %></td>
+        <td><%= link_to 'Destroy', site_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site section', new_site_section_path %>
