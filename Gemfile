@@ -12,6 +12,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor' # need this for asset compilation on heroku
+  gem 'unicorn'
 end
 
 # Use SCSS for stylesheets
