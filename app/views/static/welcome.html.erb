@@ -65,7 +65,7 @@ function initialize() {
 }
 
 function setMapLink(latitude,longitude){
-	var url = "https://www.google.com/maps/dir/@" + latitude + "," + longitude + ",15z"
+	var url = "http://maps.google.com/?saddr=&daddr=" + latitude + "," + longitude;
 	$("#where").attr('href',url);
 }
 function codeAddress(latitude,longitude) {
