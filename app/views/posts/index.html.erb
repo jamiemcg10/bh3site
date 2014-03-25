@@ -1,33 +1,29 @@
-<div class="content-box">
-	  <div class="pure-u-4-5">
-            <div class="l-box">
-                <h4 class="content-subhead">Hash Trash</h4>
-				<p>Missed a hash?  Catch up on all the trash here...</p>
-				<% if @posts != nil and @posts.length > 0 then %>
-				<p>
-				<%if @page_number != 1%><a href="<%=hashtrash_path(page_number:@page_number-1)%>"><i class="fa fa-arrow-left"></i></a> | <%end%>	
-					<% @posts.each_with_index do |post, i| %>
-					<a href="#" title="previous page of hash trashes" 
-						onclick="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
-					<% end %>
-					<a title="next page of hash trashes" href="<%=hashtrash_path(page_number:@page_number+1)%>"><i class="fa fa-arrow-right"></i></a>
-				</p>
-					<table class="pure-table">
-						<% @posts.each_with_index do |post, i| %>
-							<tr id="<%=post.title.gsub(/[^0-9a-z ]/i, '').gsub(/\s+/, "")%>">
-								<td><%= link_to post.title, post.link, :target => "_blank" %>
-							     (<%= time_ago_in_words(post.pubDate) %> ago) <% if i!=0%><a href="#" title="back to top" onclick="return scrollToTop();"><i class="fa fa-arrow-up"></i></a><%end%>
-								<br />
-								<%=raw(post.description)%>
-								</td>
-							</tr>	
-						<% end %>
-					</table>
-				<% else %>
-				<p>
-				  	<em>No hash trash to show.</em>
-				</p>
-				<% end %>
-            </div>
-        </div>
+<div>
+   <h4>Hash Trash</h4>
+<p>Missed a hash?  Catch up on all the trash here...</p>
+<% if @posts != nil and @posts.length > 0 then %>
+<p>
+<%if @page_number != 1%><a href="<%=hashtrash_path(page_number:@page_number-1)%>"><i class="fa fa-arrow-left"></i></a> | <%end%>	
+<% @posts.each_with_index do |post, i| %>
+<a href="#" title="previous page of hash trashes" 
+onclick="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+/, "")%>');"><%=post.title%></a> |
+<% end %>
+<a title="next page of hash trashes" href="<%=hashtrash_path(page_number:@page_number+1)%>"><i class="fa fa-arrow-right"></i></a>
+</p>
+<table>
+	<% @posts.each_with_index do |post, i| %>
+		<tr id="<%=post.title.gsub(/[^0-9a-z ]/i, '').gsub(/\s+/, "")%>">
+			<td><%= link_to post.title, post.link, :target => "_blank" %>
+(<%= time_ago_in_words(post.pubDate) %> ago) <% if i!=0%><a href="#" title="back to top" onclick="return scrollToTop();"><i class="fa fa-arrow-up"></i></a><%end%>
+<br />
+<%=raw(post.description)%>
+			</td>
+		</tr>	
+		<% end %>
+</table>
+<% else %>
+<p>
+<em>No hash trash to show.</em>
+</p>
+<% end %>
 </div>
