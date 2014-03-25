@@ -64,8 +64,9 @@ function initialize() {
   <% end %>
 }
 
-function setMapLink(){
-	$("#where").attr('href',map.mapUrl);
+function setMapLink(latitude,longitude){
+	var url = "https://www.google.com/maps/dir/@" + latitude + "," + longitude + ",15z"
+	$("#where").attr('href',url);
 }
 function codeAddress(latitude,longitude) {
 	var spot = new google.maps.LatLng(latitude,longitude);
@@ -74,8 +75,8 @@ function codeAddress(latitude,longitude) {
         map: map,
         position: spot
     });
-	// the map properties don't seem to be available immediately, so delay this call 1/2 a secon
-	window.setTimeout(setMapLink, 500);
+
+	setMapLink(latitude,longitude);
 }
 
 </script>
