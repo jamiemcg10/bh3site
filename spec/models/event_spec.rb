@@ -81,4 +81,12 @@ describe Event do
     end
   end
   
+  describe "new event with a where = TBD should return Boston, MA as the where" do
+    xml = VALID_XML.sub(/Where: 2388 Massachusetts Avenue, Cambridge, MA, 02140/m,'TBD')
+    event = Event.new(xml)
+    
+    it "has a location" do
+        event.where.should == "Boston, MA"
+    end
+  end
 end

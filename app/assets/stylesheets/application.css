@@ -22,6 +22,7 @@ pre {
 	padding-left: 7px;
 }
 
-ul.submenu {
-	
+#map-canvas{
+	height:400px; 
+	width:100%
 }

@@ -67,9 +67,13 @@ class Event
       # see above ugly comment
       location_match = summary.match(/Where:.*/)
       if location_match then
-        @where = location_match[0].sub('Where: ','') 
+        @where = location_match[0].sub('Where: ','')
+        # people put annoying things in the Where field, like TBD
+        if @where.downcase.strip.casecmp("tbd") == 0 then @where = 'Boston, MA' end
+        return @where
       else
         @where = 'Boston, MA'
+        return @where
       end
     end
   
