@@ -4,6 +4,7 @@ Bh3site::Application.routes.draw do
 
   get "more/index"
   root "static#welcome"
+  get "/:id", to: "static#welcome"
 
 # about routes
   get "/about" => "about#index"
@@ -14,7 +15,7 @@ Bh3site::Application.routes.draw do
   get "calendar" => "static#calendar"
 
 #static route
-  get "static/welcome"
+  get "static/welcome/:id", to: "static#welcome"
   get "static/events"
   
 #more route
@@ -23,7 +24,8 @@ Bh3site::Application.routes.draw do
   get "more/trail" => "more#trail"
   get "more/habadashery" => "more#habadashery" 
   
-  
+
+#posts route
   get "posts/:page_number" => "posts#index", as: :hashtrash
   get "posts/index/:page_number" => "posts#index"
   get "posts" => "posts#index"
