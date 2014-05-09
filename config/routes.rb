@@ -1,10 +1,9 @@
 Bh3site::Application.routes.draw do
 
-  resources :site_sections
 
   get "more/index"
   root "static#welcome"
-  get "/:id", to: "static#welcome"
+  get "/hash/:id", to: "static#welcome"
 
 # about routes
   get "/about" => "about#index"
