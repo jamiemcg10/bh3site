@@ -22,7 +22,8 @@ body {
 }
 
 .headline > .container > h2 {
-	font-size: 60px;
+	font-size: 40px;
+	font-style: italic;
 	background: #ffffff;
 	background: rgba(255, 255, 255, 0.9);
 }
