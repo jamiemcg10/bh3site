@@ -11,7 +11,7 @@ Bh3site::Application.routes.draw do
   get "about/mismanagement" 
   
 # cal route
-  get "calendar" => "static#calendar"
+  get "calendar" => "static#calendar", as: :calendar
 
 #static route
   get "static/welcome/:id", to: "static#welcome"
