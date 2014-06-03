@@ -16,7 +16,7 @@
 //= require_tree .
 
 //= require posts
-function toggle_misman($this) {
+function toggle_section($this) {
     var $collapse = $this.next('div');
     $collapse.toggleClass('hidden');
 	return false;
