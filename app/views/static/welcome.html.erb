@@ -28,7 +28,12 @@ function initialize() {
   var mapOptions = {
     zoom: 15,
     center: new google.maps.LatLng(42.3581, -71.0636), //default boston lat & long
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    draggable: false
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   <% if @next_hash.where != "Boston, MA" and @next_hash.latitude != nil and @next_hash.longitude != nil then  %>
