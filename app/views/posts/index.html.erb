@@ -17,6 +17,7 @@ onclick="return scrollToElement('<%=post.title.gsub(/[^0-9a-z ]/i, "").gsub(/\s+
 (<%= time_ago_in_words(post.pubDate) %> ago) <% if i!=0%><a href="#" title="back to top" onclick="return scrollToTop();"><i class="fa fa-arrow-up"></i></a><%end%>
 <br />
 <%=raw(post.description)%>
+<hr />
 			</td>
 		</tr>	
 		<% end %>
