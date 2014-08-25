@@ -23,12 +23,13 @@ Bh3site::Application.routes.draw do
   get "more/trail" => "more#trail"
   get "more/habadashery" => "more#habadashery" 
   
-
 #posts route
   get "posts/:page_number" => "posts#index", as: :hashtrash
   get "posts/index/:page_number" => "posts#index"
   get "posts" => "posts#index"
 
+#space unicorn route
+  get "/space_unicorn" => "space_unicorn#main"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
