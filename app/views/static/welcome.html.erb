@@ -7,7 +7,7 @@
 				<h3><%= raw @next_hash.title%></h3>
                 <h4>When:  <%=@next_hash.when.to_formatted_s(:long)%> (HST) </h4>
 				<h4>Where: <a id="where" href="#" target="_new"><%= raw @next_hash.where%></a></h4>
-				<h4>Details:</h4><pre><%=@next_hash.description.strip.html_safe%></pre>
+				<h4>Details:</h4><pre><%=auto_link(@next_hash.description,:html => { :target => '_blank' })%></pre>
             </div>
         </div>
 

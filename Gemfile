@@ -10,6 +10,7 @@ gem 'rails', '4.0.0'
 group :development,:test do
   gem 'rspec-rails', '~> 2.0'
   gem 'sqlite3'
+  gem 'capybara'
 end
 
 group :production do
@@ -46,7 +47,7 @@ end
 
 gem 'nokogiri'
 gem "geocoder"
-
+gem "rails_autolink"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
