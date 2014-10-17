@@ -1,7 +1,6 @@
 Bh3site::Application.routes.draw do
 
-
-  get "more/index"
+# static / welcome routes
   root "static#welcome"
   get "/hash/:id", to: "static#welcome"
 
@@ -19,6 +18,7 @@ Bh3site::Application.routes.draw do
   
 #more route
   get "more" => "more#index"
+  get "more/email" => "more#index"
   get "more/away" => "more#away"
   get "more/trail" => "more#trail"
   get "more/habadashery" => "more#habadashery" 
