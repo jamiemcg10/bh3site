@@ -3,34 +3,40 @@
             <div>
                 <h4>Calendar</h4>
 				<script type='text/javascript'>
-				// $(document).ready(function() {
-				// 	var calUrl = 'https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic';
-				//     $('#calendar').fullCalendar({
-				//         events: calUrl,
-				// 		defaultView: 'month',
-				// 	    eventClick: function(calEvent, jsEvent, view) {
-				// 	      if (calEvent.url) {
-				// 	            window.open(calEvent.url);
-				// 	            return false;
-				// 	        }
-				// 	    }
-				//     });
+				$(document).ready(function() {
+					var calApiKey = 'AIzaSyC93cQGDRfpguqdsNMIEEYRKXeIZzcgr28';
+					var calId = 'bostonhash@gmail.com';
+				    $('#calendar').fullCalendar({
+				        events: {
+				        	googleCalendarApiKey: calApiKey,
+            				googleCalendarId: calId
+        				},
+						defaultView: 'month',
+					    eventClick: function(calEvent, jsEvent, view) {
+					      if (calEvent.url) {
+					            window.open(calEvent.url);
+					            return false;
+					        }
+					    }
+				    });
 				
-				//     $('#mobile-calendar').fullCalendar({
-				//         events: calUrl,
-				// 		defaultView: 'basicWeek',
-				// 	    eventClick: function(calEvent, jsEvent, view) {
-				// 	      if (calEvent.url) {
-				// 	            window.open(calEvent.url);
-				// 	            return false;
-				// 	        }
-				// 	    }
-				//     });
-				// });
+				    $('#mobile-calendar').fullCalendar({
+				        events: {
+				        	googleCalendarApiKey: calApiKey,
+            				googleCalendarId: calId
+        				},
+						defaultView: 'basicWeek',
+					    eventClick: function(calEvent, jsEvent, view) {
+					      if (calEvent.url) {
+					            window.open(calEvent.url);
+					            return false;
+					        }
+					    }
+				    });
+				});
 				</script>
-<!-- 				<div id="calendar" class="hidden-xs"></div>
-				<div id="mobile-calendar" class="visible-xs"></div> -->
-				<iframe src="https://www.google.com/calendar/embed?src=bostonhash%40gmail.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+				<div id="calendar" class="hidden-xs"></div>
+				<div id="mobile-calendar" class="visible-xs"></div>
             </div>
         </div>
 </div>
