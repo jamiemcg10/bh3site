@@ -20,9 +20,6 @@ class StaticController < ApplicationController
   def calendar
   end
   
-  def events
-  end
-  
   private 
     def get_next_hash(id)
         doc = Nokogiri::XML(open(CALENDAR_FEED_URL))

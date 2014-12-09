@@ -28,6 +28,11 @@ Bh3site::Application.routes.draw do
   get "posts/index/:page_number" => "posts#index"
   get "posts" => "posts#index"
 
+#special_events route
+  get "events" => "special_events#index"
+  get "events/:url_code" => "special_events#show"
+  get "events/:url_code/rego" => "special_events#rego"
+
 #space unicorn route
   get "/space_unicorn" => "space_unicorn#main"
   get "/space_unicorn/rego" => "space_unicorn#rego"
