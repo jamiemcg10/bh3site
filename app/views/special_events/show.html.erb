@@ -1,0 +1,4 @@
+<div class="centered">
+  <h1><%= @event.name %></h1>
+  <%= render "partials/#{@event.name.downcase.tr(" ", "_")}" %>
+</div>
