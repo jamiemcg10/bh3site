@@ -48,6 +48,8 @@ end
 gem 'nokogiri'
 gem "geocoder"
 gem "rails_autolink"
+gem "haml"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
