@@ -28,12 +28,10 @@ Bh3site::Application.routes.draw do
   get "posts/index/:page_number" => "posts#index"
   get "posts" => "posts#index"
 
-
 #special_events route
   get "events" => "special_events#index"
   get "events/:url_code" => "special_events#show"
   get "events/:url_code/rego" => "special_events#rego"
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
