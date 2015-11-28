@@ -26,7 +26,7 @@ class StaticController < ApplicationController
     def get_next_hash(id)
       begin
           url = CAL_URL + DateTime.now.beginning_of_day.iso8601
-          cal_results = open(url)
+          cal_results = open(url,'User-Agent' => 'bh3')
           ev = ActiveSupport::JSON.decode(cal_results)["items"][id]
           Event.new ev
       rescue 
