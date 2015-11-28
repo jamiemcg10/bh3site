@@ -2,7 +2,7 @@
 require 'open-uri'
 
 class StaticController < ApplicationController
-  CAL_URL = "https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?key=AIzaSyADaA4ZCQxsPrX12xg5iYt6g4pspVaal-0&futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin="
+  CAL_URL = "https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?key=AIzaSyC93cQGDRfpguqdsNMIEEYRKXeIZzcgr28&futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin="
 
   def welcome
     if !params[:id] then
