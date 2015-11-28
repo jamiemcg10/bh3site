@@ -163,6 +163,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 1.2)
   jquery-rails
+  json
   nokogiri
   pg
   pry-rails

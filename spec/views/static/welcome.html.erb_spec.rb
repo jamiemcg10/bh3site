@@ -1,52 +1,51 @@
 require 'spec_helper'
 
-  VALID_XML_FOR_VIEW = "<entry>
-    <id>http://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic/o72mat6sjoi6khhgeddoc7h5jo</id>
-    <published>2013-04-30T20:38:32.000Z</published>
-    <updated>2013-10-09T12:45:07.000Z</updated>
-    <category scheme=\"http://schemas.google.com/g/2005#kind\" term=\"http://schemas.google.com/g/2005#event\"/>
-    <title type=\"html\">Test Trail Name</title>
-    <summary type=\"html\">When: Mon Oct 14, 2013 6:30pm to Mon Oct 14, 2013 9:30pm&amp;nbsp;
-    EDT&lt;br&gt;
-    &lt;br&gt;Who: Boston Hasher
-    &lt;br&gt;Where: 2388 Massachusetts Avenue, Cambridge, MA, 02140
-&lt;br&gt;Event Status: confirmed</summary>
-    <content type=\"html\">When: Mon Oct 14, 2013 6:30pm to Mon Oct 14, 2013 9:30pm 
-  EDT&lt;br /&gt;
-  &lt;br /&gt;Who: Boston Hasher
-
-  &lt;br /&gt;Event Status: confirmed
-  &lt;br /&gt;Event Description: When: Oct 14th, 6:30HST 
-
-  Where: Joe Sent Me, 2388 Massachusetts Avenue, Cambridge, MA, 02140 (Nearest T is Davis on the redline).  
-
-  Hare: Spunk in the Trunk
-
-  Sack Car: Yankee
-
-  $5 Hash Cash
-
-  Promises - shitty trail. Gracias. (Don&amp;#39;t forget cranium lamps ladies - it&amp;#39;s getting dark out there!)</content>
-    <link rel=\"alternate\" type=\"text/html\" href=\"https://www.google.com/calendar/event?eid=bzcybWF0NnNqb2k2a2hoZ2VkZG9jN2g1am8gYm9zdG9uaGFzaEBt\" title=\"alternate\"/>
-    <link rel=\"self\" type=\"application/atom+xml\" href=\"https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic/o72mat6sjoi6khhgeddoc7h5jo\"/>
-    <author>
-      <name>alicia.aci@gmail.com</name>
-      <email>alicia.aci@gmail.com</email>
-    </author>
-  </entry>"
+  VALID_JSON = '  {
+   "kind": "calendar#event",
+   "etag": "\"2892629564664000\"",
+   "id": "1l9b73b3ankvdl1h9me5dg87ns_20151227T193000Z",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MWw5YjczYjNhbmt2ZGwxaDltZTVkZzg3bnNfMjAxNTEyMjdUMTkzMDAwWiBib3N0b25oYXNoQG0",
+   "created": "2015-10-12T14:50:26.000Z",
+   "updated": "2015-10-31T18:06:22.332Z",
+   "summary": "Saint Stephen\'s Day Trail",
+   "description": "The hash, the hash, the king of all runs\nSt. Stephen\'s Day was caught in the square\\nWiki the hare, our fear was great,\\nGave us a good trail, or suffer thy fate\\n\\nWe followed the hare three miles or more\\nThree miles of more, three miles or more\\nThrough hedges and ditches and heaps of snow\\nAt three o\'clock in the evening\\n\\nHasher, Hasher, what is your drink?\\nIt\'s in the beer that I love best\\nIt\'s in the beer, the IPA, \\nAnd all the hash does downs-downs for me\\n\\nAs I went out to scout the trail\\nI saw a mark upon the road\\nUp with me whistle and gave it wail\\nAnd followed the marks to drink with you all\\n\\nI have a pony keg under me arm\\nA tuppence or penny will do it no harm\\nFor we are the hashers who came your way\\nTo bring in the beer on St. Stephen\'s Day",
+   "location": "John Harvard\'s, 33 Dunster St, Cambridge, MA 02138, United States",
+   "creator": {
+    "email": "pgoldin@gmail.com",
+    "displayName": "Paul Goldin"
+   },
+   "organizer": {
+    "email": "bostonhash@gmail.com",
+    "displayName": "Boston Hasher",
+    "self": true
+   },
+   "start": {
+    "dateTime": "2015-12-27T14:30:00-00:00"
+   },
+   "end": {
+    "dateTime": "2015-12-27T17:30:00-00:00"
+   },
+   "recurringEventId": "1l9b73b3ankvdl1h9me5dg87ns",
+   "originalStartTime": {
+    "dateTime": "2015-12-27T14:30:00-00:00"
+   },
+   "iCalUID": "1l9b73b3ankvdl1h9me5dg87ns@google.com",
+   "sequence": 0
+  }'
 
 describe 'static/welcome.html.erb' do
   it 'displays next event title correctly' do
-  	ev = Event.new(VALID_XML_FOR_VIEW)
+  	ev = Event.new JSON.parse(VALID_JSON)
     assign(:next_hash,ev)
 
     render
-    rendered.should match(/Test Trail Name/)
+    rendered.should match(/Saint Stephen/)
 
   end
 
     it 'displays the map' do
-  	ev = Event.new(VALID_XML_FOR_VIEW)
+  	ev = Event.new JSON.parse(VALID_JSON)
     assign(:next_hash,ev)
 
     render
@@ -55,7 +54,7 @@ describe 'static/welcome.html.erb' do
   end
   
   it 'converts urls to proper external links' do
-  	ev = Event.new(VALID_XML_FOR_VIEW.sub(/5 Hash Cash/m,'5 Hash Cash http://google.com'))
+  	ev = Event.new JSON.parse(VALID_JSON.sub(/5 The hash,/m,'http://google.com')) 
     assign(:next_hash,ev)
 
     render

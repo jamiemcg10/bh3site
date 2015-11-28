@@ -1,5 +1,44 @@
 <% content_for :head do %>
+<script type="text/javascript">
+var map;
+var init = 0;
 
+function initMap() {
+  if(init == 1) return; 
+  init = 1;
+  geocoder = new google.maps.Geocoder();
+  var mapOptions = {
+    zoom: 15,
+    center: new google.maps.LatLng(42.3581, -71.0636), //default boston lat & long
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    draggable: false
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  <% if @next_hash.where != "Boston, MA" and @next_hash.latitude != nil and @next_hash.longitude != nil then  %>
+  codeAddress(<%=@next_hash.latitude%>,<%=@next_hash.longitude%>);
+  <% end %>
+}
+
+function setMapLink(latitude,longitude){
+  var url = "http://maps.google.com/?saddr=&daddr=" + latitude + "," + longitude;
+  $("#where").attr('href',url);
+}
+function codeAddress(latitude,longitude) {
+  var spot = new google.maps.LatLng(latitude,longitude);
+  map.setCenter(spot);
+    var markerE = new google.maps.Marker({
+        map: map,
+        position: spot
+    });
+
+  setMapLink(latitude,longitude);
+}
+
+</script>
 <% end %>
         <div>
             <div>
@@ -17,44 +56,8 @@
             </div>
         </div>
 <% content_for :footer do %>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
-<script type="text/javascript">
-var map;
-var init = 0;
 
-function initialize() {
-  init = 1;
-  geocoder = new google.maps.Geocoder();
-  var mapOptions = {
-    zoom: 15,
-    center: new google.maps.LatLng(42.3581, -71.0636), //default boston lat & long
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scrollwheel: false,
-    navigationControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    draggable: false
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  <% if @next_hash.where != "Boston, MA" and @next_hash.latitude != nil and @next_hash.longitude != nil then  %>
-	codeAddress(<%=@next_hash.latitude%>,<%=@next_hash.longitude%>);
-  <% end %>
-}
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3&callback=initMap"></script>
 
-function setMapLink(latitude,longitude){
-	var url = "http://maps.google.com/?saddr=&daddr=" + latitude + "," + longitude;
-	$("#where").attr('href',url);
-}
-function codeAddress(latitude,longitude) {
-	var spot = new google.maps.LatLng(latitude,longitude);
-	map.setCenter(spot);
-    var markerE = new google.maps.Marker({
-        map: map,
-        position: spot
-    });
 
-	setMapLink(latitude,longitude);
-}
-
-</script>
 <% end %>

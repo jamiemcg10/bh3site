@@ -1,15 +1,15 @@
-require 'nokogiri'
+
 require 'open-uri'
 
 class StaticController < ApplicationController
-  CALENDAR_FEED_URL = "https://www.google.com/calendar/feeds/bostonhash%40gmail.com/public/basic?futureevents=true&orderby=starttime&sortorder=a&singleevents=true"
+  CAL_URL = "https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?key=AIzaSyADaA4ZCQxsPrX12xg5iYt6g4pspVaal-0&futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin="
 
   def welcome
     if !params[:id] then
       params[:id] = 0
     end
-    render 'welcome-alt'
-  # @next_hash = get_next_hash(params[:id].to_f)
+
+   @next_hash = get_next_hash(params[:id].to_f)
   end
   
   def more
@@ -25,14 +25,11 @@ class StaticController < ApplicationController
   private 
     def get_next_hash(id)
       begin
-        doc = Nokogiri::XML(open(CALENDAR_FEED_URL))
-        events = doc.xpath("//xmlns:feed/xmlns:entry")
-        if events.length == 0 then events = doc.xpath("//at:entry", {"at" => "http://www.w3.org/2005/Atom"}) end
-        ev = events[id]
-        event_xml = ev.to_s
-        event_xml.sub! 'xmlns="http://www.w3.org/2005/Atom"',''
-        Event.new event_xml
-      rescue
+          url = CAL_URL + DateTime.now.beginning_of_day.iso8601
+          cal_results = open(url)
+          ev = ActiveSupport::JSON.decode(cal_results)["items"][id]
+          Event.new ev
+      rescue 
         Event.new 
       end
     end

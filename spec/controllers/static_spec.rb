@@ -48,17 +48,5 @@ describe StaticController do
       expect(response).to render_template("calendar")
     end
   end
-  
-  describe "GET #events" do
-    it "responds successfully with an HTTP 200 status code" do
-      get :events
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
 
-    it "renders the events template" do
-      get :events
-      expect(response).to render_template("events")
-    end
-  end
 end

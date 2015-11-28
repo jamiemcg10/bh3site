@@ -12,6 +12,7 @@ group :development,:test do
   gem 'sqlite3'
   gem 'capybara'
   gem 'pry-rails'
+  gem 'json'
 end
 
 group :production do
