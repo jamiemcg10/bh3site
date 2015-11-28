@@ -19,7 +19,10 @@ class StaticController < ApplicationController
   end
   
   def calendar
+  end
 
+  def altwelcome
+    render 'welcome-alt'
   end
   
   private 
