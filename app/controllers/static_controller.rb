@@ -29,11 +29,14 @@ class StaticController < ApplicationController
     def get_next_hash(id)
       begin
           url = CAL_URL + DateTime.now.beginning_of_day.iso8601
+          puts url
           cal_results = open(url,'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36')
+          puts cal_results
           ev = ActiveSupport::JSON.decode(cal_results)["items"][id]
+          puts ev
           Event.new ev
-      rescue 
-        Event.new 
+      rescue Exception => e
+          puts e
       end
     end
 end
