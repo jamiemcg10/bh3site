@@ -1,7 +1,7 @@
 Bh3site::Application.routes.draw do
 
 # static / welcome routes
-  root "static#altwelcome"
+  root "static#welcome"
   get "/hash/:id", to: "static#welcome"
 
 # about routes
