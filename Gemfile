@@ -51,6 +51,7 @@ gem 'nokogiri'
 gem "geocoder"
 gem "rails_autolink"
 gem "haml"
+gem "paypal-sdk-rest"
 
 
 # Use ActiveModel has_secure_password
