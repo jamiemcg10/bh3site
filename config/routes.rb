@@ -35,6 +35,7 @@ Bh3site::Application.routes.draw do
 
 #handle paypal webhooks, yay!
   post "paypal" => "pay#catch"
+  get "pay" => "pay#index"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
