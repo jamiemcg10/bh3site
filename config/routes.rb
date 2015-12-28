@@ -34,7 +34,7 @@ Bh3site::Application.routes.draw do
   get "events/:url_code/rego" => "special_events#rego"
 
 #handle paypal webhooks, yay!
-  post "paypal" => "paypal#catch"
+  post "paypal" => "pay#catch"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
