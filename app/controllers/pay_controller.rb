@@ -1,5 +1,6 @@
 class PayController < ApplicationController
-	
+	protect_from_forgery except: [:catch]
+
 	PAY_CONFIRM_URL = "http://google.com"
 	PAY_EMAIL = "brendan.caffrey@gmail.com"
 
