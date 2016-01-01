@@ -13,7 +13,9 @@ class PayController < ApplicationController
 		  params.permit! # Permit all Paypal input params
 		  pp_status = params[:payment_status]
 		  raw = request.raw_post
-		  validate_ipn raw
+		  if validate_ipn(raw) == false
+		  	raise "ipn not validated"
+		  end
 		  if pp_status == "Completed"
 		  	  payer =  params[:payer_email]
 		  	  txn_id = params[:txn_id]
@@ -62,7 +64,14 @@ class PayController < ApplicationController
 		request.body = post_data
 
 		response = http.request(request)
-		puts response
+		body = response.body()
+		http_status = response.code
+
+		puts body
+		puts http_status
+		puts response.message
+
+		return http_status == 200 && body == "VERIFIED"
 	  end
 	  	
 	  
