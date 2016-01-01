@@ -55,7 +55,7 @@ class PayController < ApplicationController
 	  def validate_ipn(raw)
 	  	post_data = "cmd=_notify-validate&" + raw
 	  	url = URI.parse(IPN_VALIDATE_URL)
-	  	http = Net::HTTP.new(uri.host, uri.port)
+	  	http = Net::HTTP.new(url.host, url=.port)
 		http.use_ssl = true
 
 		request = Net::HTTP::Post.new(uri.path)
