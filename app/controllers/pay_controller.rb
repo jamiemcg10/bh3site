@@ -67,11 +67,7 @@ class PayController < ApplicationController
 		body = response.body()
 		http_status = response.code
 
-		puts body
-		puts http_status
-		puts response.message
-
-		return http_status == 200 && body == "VERIFIED"
+		return http_status == "200" && body == "VERIFIED"
 	  end
 	  	
 	  
