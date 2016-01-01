@@ -13,7 +13,7 @@ class PayController < ApplicationController
 		  params.permit! # Permit all Paypal input params
 		  pp_status = params[:payment_status]
 		  raw = request.raw_post
-		  validate raw
+		  validate_ipn raw
 		  if pp_status == "Completed"
 		  	  payer =  params[:payer_email]
 		  	  txn_id = params[:txn_id]
