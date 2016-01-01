@@ -8,10 +8,9 @@ class PayController < ApplicationController
 	def catch
 		  params.permit! # Permit all Paypal input params
     	  status = params[:payment_status]
-    	  log(status)
+    	  puts status
     	  if status == "Completed"
     	  		 r = request.body.read
-				 log(r)
 				 render :text => r
 				 puts r
 		  end
