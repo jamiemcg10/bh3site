@@ -7,13 +7,8 @@ class PayController < ApplicationController
 	# this guy will catch the paypal webhooks
 	def catch
 		  params.permit! # Permit all Paypal input params
-    	  status = params[:payment_status]
-    	  puts status
-    	  if status == "Completed"
-    	  		 r = request.body.read
-				 render :text => r
-				 puts r
-		  end
+		  puts params
+		  render text: => params
 	end
 
 	# this guy will redirect the user to paypal to get their $$
