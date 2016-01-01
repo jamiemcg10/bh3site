@@ -8,7 +8,7 @@ class PayController < ApplicationController
 	def catch
 		  params.permit! # Permit all Paypal input params
 		  puts params
-		  render text: => params
+		  render :text => params
 	end
 
 	# this guy will redirect the user to paypal to get their $$
