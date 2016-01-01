@@ -58,7 +58,7 @@ class PayController < ApplicationController
 	  	http = Net::HTTP.new(url.host, url.port)
 		http.use_ssl = true
 
-		request = Net::HTTP::Post.new(uri.path)
+		request = Net::HTTP::Post.new(url.path)
 		request.body = post_data
 
 		response = http.request(request)
