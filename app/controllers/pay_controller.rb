@@ -4,10 +4,18 @@ class PayController < ApplicationController
 	PAY_CONFIRM_URL = "http://google.com"
 	PAY_EMAIL = "brendan.caffrey@gmail.com"
 
-	# this guy will catch the paypal webhooks
+	# this guy will catch the paypal ipn
 	def catch
 		  params.permit! # Permit all Paypal input params
-		  puts params
+		  pp_status = params[:payment_status]
+		  if pp_status == "Completed"
+		  	  payer =  params[:payer_email]
+		  	  txn_id = params[:txn_id]
+		  	  amount = params[:mc_gross]
+		  	  txn = Hash["payer" => payer, "txn_id" => txn_id, "amount" => amount] 
+		  	  puts txn
+		  end
+		
 		  render :text => params
 	end
 
@@ -31,7 +39,8 @@ class PayController < ApplicationController
 	        amount: price,
 	        item_name: event_name,
 	        item_number: event_id,
-	        quantity: '1'
+	        quantity: '1',
+	        notify_url: 'https://bh3demo.herokuapp.com/paypal' # TODO:  set this to our paypal controller url - this will cause the IPN to callback to us
 	    }
 	    "https://sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
 	  end
