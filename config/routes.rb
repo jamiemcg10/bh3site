@@ -33,6 +33,7 @@ Bh3site::Application.routes.draw do
   get "events/:url_code" => "special_events#show"
   get "events/:url_code/rego" => "special_events#rego"
 
+resources :event_registrations, only: [:new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
