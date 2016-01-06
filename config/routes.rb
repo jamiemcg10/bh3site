@@ -32,8 +32,8 @@ Bh3site::Application.routes.draw do
   get "events" => "special_events#index"
   get "events/:url_code" => "special_events#show"
 
-resources :special_events, only: [:index, :show] do
-  resources :event_registrations, only: [:new, :create]
+resources :special_events, only: [] do
+  resources :event_registrations, only: [:new, :create, :show]
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -5,8 +5,13 @@ class EventRegistrationsController < ApplicationController
   end
 
   def create
-    rego = event.event_registrations.create
-    rego.update_attributes(rego_params[:event_registration])
+    rego = event.event_registrations.build
+    if rego.update_attributes(rego_params[:event_registration])
+      flash[:notice] = "You're registered for BH3 Marathon 2016!"
+    else
+      flash[:notice] = "Sorry, something went wrong."
+    end
+    redirect_to "/events/#{event.url_code}"
   end
 
   private
