@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160105025510) do
   create_table "event_registrations", force: true do |t|
     t.integer  "special_event_id"
     t.string   "hash_name"
+    t.string   "nerd_name"
     t.string   "email"
     t.string   "kennel"
     t.string   "food_preference"

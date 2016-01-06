@@ -3,6 +3,7 @@ class CreateEventRegistrations < ActiveRecord::Migration
     create_table :event_registrations do |t|
       t.belongs_to :special_event
       t.string     :hash_name
+      t.string     :nerd_name
       t.string     :email
       t.string     :kennel
       t.string     :food_preference
