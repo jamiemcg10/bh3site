@@ -1,6 +1,5 @@
 %h3 Marathon 2016 Rego Form
-= simple_form_for @event_registration do |f|
+= simple_form_for [@event, @event_registration] do |f|
   = f.input :hash_name
   = f.input :email
-  = f.input :kennel
-  = f.button :submit
+  = f.submit

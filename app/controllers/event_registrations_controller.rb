@@ -1,6 +1,7 @@
 class EventRegistrationsController < ApplicationController
   def new
-    @event_registration = EventRegistration.new
+    @event = event
+    @event_registration = event.event_registrations.build
   end
 
   def create
@@ -8,6 +9,10 @@ class EventRegistrationsController < ApplicationController
   end
 
   private
+
+  def event
+    SpecialEvent.find_by(params[:special_event_id])
+  end
 
   def registration_params
     params.permit(event_registration: [:hash_name, :email])
