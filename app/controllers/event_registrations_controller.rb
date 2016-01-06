@@ -5,7 +5,8 @@ class EventRegistrationsController < ApplicationController
   end
 
   def create
-    EventRegistration.create(registration_params[:event_registration])
+    rego = event.event_registrations.create
+    rego.update_attributes(rego_params[:event_registration])
   end
 
   private
@@ -14,7 +15,7 @@ class EventRegistrationsController < ApplicationController
     SpecialEvent.find_by(params[:special_event_id])
   end
 
-  def registration_params
-    params.permit(event_registration: [:hash_name, :email])
+  def rego_params
+    params.permit(event_registration: [:email, :hash_name, :nerd_name, :kennel, :food_preference, :gluten_allergy, :need_crash_space])
   end
 end

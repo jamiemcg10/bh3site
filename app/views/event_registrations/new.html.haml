@@ -1,5 +1,11 @@
 %h3 Marathon 2016 Rego Form
 = simple_form_for [@event, @event_registration] do |f|
-  = f.input :hash_name
-  = f.input :email
+  = f.input  :email
+  = f.input  :hash_name
+  = f.input  :nerd_name
+  = f.input  :kennel
+  = f.label  :food_preference
+  = f.select :food_preference, EventRegistration::FOOD_OPTIONS
+  = f.input  :gluten_allergy, label: "I have a gluten allergy!"
+  = f.input  :need_crash_space, label: "I need crash space!"
   = f.button :submit
