@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20160105025510) do
 
   create_table "event_registrations", force: true do |t|
+    t.integer  "special_event_id"
     t.string   "hash_name"
     t.string   "email"
     t.string   "kennel"
@@ -23,7 +24,6 @@ ActiveRecord::Schema.define(version: 20160105025510) do
     t.boolean  "shirt"
     t.string   "shirt_size"
     t.date     "registration_date"
-    t.string   "event"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
