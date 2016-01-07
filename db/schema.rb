@@ -15,16 +15,18 @@ ActiveRecord::Schema.define(version: 20160105025510) do
 
   create_table "event_registrations", force: true do |t|
     t.integer  "special_event_id"
+    t.string   "contact_email"
     t.string   "hash_name"
     t.string   "nerd_name"
-    t.string   "email"
     t.string   "kennel"
+    t.string   "payment_email"
     t.string   "food_preference"
     t.boolean  "gluten_allergy"
     t.boolean  "need_crash_space"
-    t.boolean  "shirt"
-    t.string   "shirt_size"
+    t.string   "extra_hab"
+    t.string   "extra_hab_size"
     t.date     "registration_date"
+    t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

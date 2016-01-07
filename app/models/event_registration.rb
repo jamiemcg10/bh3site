@@ -9,6 +9,9 @@ class EventRegistration < ActiveRecord::Base
   private
 
   def set_defaults
+    self.extra_hab         ||= nil
+    self.extra_hab_size    ||= nil
     self.registration_date ||= Date.current
+    self.paid              ||= false
   end
 end
