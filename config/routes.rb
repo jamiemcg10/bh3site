@@ -1,5 +1,7 @@
 Bh3site::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 # static / welcome routes
   root "static#welcome"
   get "/hash/:id", to: "static#welcome"
