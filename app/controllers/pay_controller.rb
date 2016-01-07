@@ -8,16 +8,24 @@ class PayController < ApplicationController
 	def catch
 		  params.permit! # Permit all Paypal input params
 		  pp_status = params[:payment_status]
-		  raw = request.raw_post
+		  payer =  params[:payer_email]
+		  txn_id = params[:txn_id]
+		  amount = params[:mc_gross]
+		  url_code = params[:item_name]
+		  
+		  txn = Hash["payer" => payer, "txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
+		  puts txn
+
 		  if validate_ipn(raw) == false
 		  	raise "ipn not validated"
 		  end
 		  if pp_status == "Completed"
-		  	  payer =  params[:payer_email]
-		  	  txn_id = params[:txn_id]
-		  	  amount = params[:mc_gross]
-		  	  txn = Hash["payer" => payer, "txn_id" => txn_id, "amount" => amount] 
-		  	  puts txn
+
+		  	  # update the rego record
+		  	  event = SpecialEvent.find_by url_code: url_code
+		  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id
+		  	  rego.paid = true
+		  	  rego.save
 		  end
 		
 		  render :text => params
@@ -25,25 +33,28 @@ class PayController < ApplicationController
 
 	# this guy will redirect the user to paypal to get their $$
 	def index 
-		id = params["id"]
 		price = params["price"]
 		event_name = params["event_name"]
-		event_id = params["event_id"]
-		redirect_to paypal_url(id,price,event_name,event_id)
+		return_url = params["return_url"]
+		redirect_to paypal_url(price,event_name,return_url)
+	end
+
+	def success
 	end
 
  private 
-	 def paypal_url(id,price,event_name,event_id)
+	 def paypal_url(price,event_name,return_url)
 	    values = {
 	        business: "#{Figaro.env.paypal_email}",
 	        cmd: "_xclick",
 	        upload: 1,
-	        return: "#{Figaro.env.paypal_confirm_url}",
-	        invoice: id,
+	        return: return_url,
 	        amount: price,
 	        item_name: event_name,
-	        item_number: event_id,
+	        item_number: '1',
 	        quantity: '1',
+	        rm: '0',
+	        cbt: 'Back to Boston Hash House Harriers',
 	        notify_url: 'https://bh3demo.herokuapp.com/paypal' # TODO:  set this to our paypal controller url - this will cause the IPN to callback to us
 	    }
 	    url = "#{Figaro.env.paypal_url}" + values.to_query

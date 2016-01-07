@@ -39,6 +39,7 @@ end
 #handle paypal webhooks, yay!
   post "paypal" => "pay#catch"
   get "pay" => "pay#index"
+  get "paypal/success/:url_code" => "pay#success"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

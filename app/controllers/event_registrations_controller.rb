@@ -11,7 +11,8 @@ class EventRegistrationsController < ApplicationController
     else
       flash[:notice] = "Sorry, something went wrong."
     end
-    redirect_to "/events/#{event.url_code}"
+    return_url = "#{request.protocol}#{request.host_with_port}/paypal/success/#{event.url_code}";
+    redirect_to controller: 'pay', action: 'index', price: '25.00', event_name: "#{event.url_code}", return_url: return_url 
   end
 
   private

@@ -1,10 +1,8 @@
 ipn_validate_url : "https://www.sandbox.paypal.com/cgi-bin/webscr"
 paypal_url : "https://sandbox.paypal.com/cgi-bin/webscr?"
-paypal_confirm_url : "http://google.com"
-paypal_email : "brendan.caffrey@gmail.com"
+paypal_email : "bcaff86-facilitator@hotmail.com"
 
 production:
   ipn_validate_url : "https://www.paypal.com/cgi-bin/webscr"
   paypal_url : "https://paypal.com/cgi-bin/webscr?"
-  paypal_confirm_url : "http://google.com"
-  paypal_email : "bostonhash@gmail.com"
+  paypal_email : "bostonhhh@aol.com"
