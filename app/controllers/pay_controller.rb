@@ -4,11 +4,6 @@ require "net/http"
 class PayController < ApplicationController
 	protect_from_forgery except: [:catch]
 
-	IPN_VALIDATE_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
-	PAYPAL_URL = "https://sandbox.paypal.com/cgi-bin/webscr?"
-	PAY_CONFIRM_URL = "http://google.com"
-	PAY_EMAIL = "brendan.caffrey@gmail.com"
-
 	# this guy will catch the paypal ipn
 	def catch
 		  params.permit! # Permit all Paypal input params
@@ -40,10 +35,10 @@ class PayController < ApplicationController
  private 
 	 def paypal_url(id,price,event_name,event_id)
 	    values = {
-	        business: "#{PAY_EMAIL}",
+	        business: "#{Figaro.env.paypal_email}",
 	        cmd: "_xclick",
 	        upload: 1,
-	        return: "#{PAY_CONFIRM_URL}",
+	        return: "#{Figaro.env.paypal_confirm_url}",
 	        invoice: id,
 	        amount: price,
 	        item_name: event_name,
@@ -51,7 +46,7 @@ class PayController < ApplicationController
 	        quantity: '1',
 	        notify_url: 'https://bh3demo.herokuapp.com/paypal' # TODO:  set this to our paypal controller url - this will cause the IPN to callback to us
 	    }
-	    url = PAYPAL_URL + values.to_query
+	    url = "#{Figaro.env.paypal_url}" + values.to_query
 	    puts url
 	    return url
 	  end
@@ -59,7 +54,7 @@ class PayController < ApplicationController
 	  # take raw ipn and validate it
 	  def validate_ipn(raw)
 	  	post_data = "cmd=_notify-validate&" + raw
-	  	url = URI.parse(IPN_VALIDATE_URL)
+	  	url = URI.parse(Figaro.env.ipn_validate_url)
 	  	http = Net::HTTP.new(url.host, url.port)
 		http.use_ssl = true
 

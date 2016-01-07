@@ -52,6 +52,7 @@ gem "geocoder"
 gem "rails_autolink"
 gem "haml"
 gem "simple_form"
+gem "figaro"
 
 
 # Use ActiveModel has_secure_password

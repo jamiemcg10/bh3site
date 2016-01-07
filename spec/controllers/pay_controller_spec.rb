@@ -15,7 +15,8 @@ describe PayController do
 	      
 	      expect(response.status).to eq(302)
 	      expect(query["amount"]).to eq('25.00')
-	      expect(query["item-name"]).to eq('some-hash')
+	      puts query
+	      expect(query["item_name"]).to eq('some-hash')
 	    end
 	end
 end
