@@ -12,7 +12,7 @@ class EventRegistrationsController < ApplicationController
       flash[:notice] = "Sorry, something went wrong."
     end
     return_url = "#{request.protocol}#{request.host_with_port}/paypal/success/#{event.url_code}";
-    redirect_to controller: 'pay', action: 'index', price: '25.00', event_name: "#{event.url_code}", return_url: return_url 
+    redirect_to controller: 'pay', action: 'index', price: '00.01', event_name: "#{event.url_code}", return_url: return_url 
   end
 
   private
