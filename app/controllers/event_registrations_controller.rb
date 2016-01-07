@@ -18,7 +18,7 @@ class EventRegistrationsController < ApplicationController
   private
 
   def event
-    SpecialEvent.find_by(params[:special_event_id])
+    SpecialEvent.find_by_id(params[:special_event_id])
   end
 
   def rego_params
