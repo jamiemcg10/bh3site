@@ -15,7 +15,7 @@ class PayController < ApplicationController
 		  
 		  txn = Hash["payer" => payer, "txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
 		  puts txn
-		  
+
 		  if validate_ipn(request.raw_post) == false
 		  	raise "ipn not validated"
 		  end
@@ -36,14 +36,16 @@ class PayController < ApplicationController
 		price = params["price"]
 		event_name = params["event_name"]
 		return_url = params["return_url"]
-		redirect_to paypal_url(price,event_name,return_url)
+		# for paypal IPN we have to use https so we can just use the heroku urls
+		notify_url = request.host == "bostonhash.com" ? "https://bh3prod.herokuapp.com/paypal" : "https://bh3demo.herokuapp.com/paypal"
+		redirect_to paypal_url(price,event_name,return_url,notify_url)
 	end
 
 	def success
 	end
 
  private 
-	 def paypal_url(price,event_name,return_url)
+	 def paypal_url(price,event_name,return_url,notify_url)
 	    values = {
 	        business: "#{Figaro.env.paypal_email}",
 	        cmd: "_xclick",
@@ -55,7 +57,7 @@ class PayController < ApplicationController
 	        quantity: '1',
 	        rm: '0',
 	        cbt: 'Back to Boston Hash House Harriers',
-	        notify_url: 'https://bh3demo.herokuapp.com/paypal' # TODO:  set this to our paypal controller url - this will cause the IPN to callback to us
+	        notify_url: notify_url
 	    }
 	    url = "#{Figaro.env.paypal_url}" + values.to_query
 	    puts url
