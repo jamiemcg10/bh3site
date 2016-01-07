@@ -31,7 +31,10 @@ Bh3site::Application.routes.draw do
 #special_events route
   get "events" => "special_events#index"
   get "events/:url_code" => "special_events#show"
-  get "events/:url_code/rego" => "special_events#rego"
+
+resources :special_events, only: [] do
+  resources :event_registrations, only: [:new, :create, :show]
+end
 
 #handle paypal webhooks, yay!
   post "paypal" => "pay#catch"
