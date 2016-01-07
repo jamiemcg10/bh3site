@@ -5,6 +5,7 @@ class PayController < ApplicationController
 	protect_from_forgery except: [:catch]
 
 	IPN_VALIDATE_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+	PAYPAL_URL = "https://sandbox.paypal.com/cgi-bin/webscr?"
 	PAY_CONFIRM_URL = "http://google.com"
 	PAY_EMAIL = "brendan.caffrey@gmail.com"
 
@@ -50,7 +51,9 @@ class PayController < ApplicationController
 	        quantity: '1',
 	        notify_url: 'https://bh3demo.herokuapp.com/paypal' # TODO:  set this to our paypal controller url - this will cause the IPN to callback to us
 	    }
-	    "https://sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+	    url = PAYPAL_URL + values.to_query
+	    puts url
+	    return url
 	  end
 
 	  # take raw ipn and validate it
