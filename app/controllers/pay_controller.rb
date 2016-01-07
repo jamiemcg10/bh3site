@@ -15,8 +15,8 @@ class PayController < ApplicationController
 		  
 		  txn = Hash["payer" => payer, "txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
 		  puts txn
-
-		  if validate_ipn(raw) == false
+		  
+		  if validate_ipn(request.raw_post) == false
 		  	raise "ipn not validated"
 		  end
 		  if pp_status == "Completed"
