@@ -2,33 +2,35 @@
 # https://github.com/plataformatec/simple_form/issues/316
 # https://gist.github.com/tommarshall/6308327
 
-inputs = %w[
-  CollectionSelectInput
-  DateTimeInput
-  FileInput
-  GroupedCollectionSelectInput
-  NumericInput
-  PasswordInput
-  RangeInput
-  StringInput
-  TextInput
-]
+# inputs = %w[
+#   CollectionSelectInput
+#   DateTimeInput
+#   FileInput
+#   GroupedCollectionSelectInput
+#   NumericInput
+#   PasswordInput
+#   RangeInput
+#   StringInput
+#   TextInput
+# ]
 
-inputs.each do |input_type|
-  superclass = "SimpleForm::Inputs::#{input_type}".constantize
+# inputs.each do |input_type|
+#   superclass = "SimpleForm::Inputs::#{input_type}".constantize
 
-  new_class = Class.new(superclass) do
-    def input_html_classes
-      super.push('form-control')
-    end
-  end
+#   new_class = Class.new(superclass) do
+#     def input_html_classes
+#       super.push('form-control')
+#     end
+#   end
 
-  Object.const_set(input_type, new_class)
-end
+#   Object.const_set(input_type, new_class)
+# end
 
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   config.boolean_style = :nested
+
+  config.input_class = "form-control"
 
   config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
       defaults: { input_html: { class: 'default_class' } } do |b|
@@ -72,18 +74,18 @@ SimpleForm.setup do |config|
     end
   end
 
-config.wrappers :checkbox, tag: 'div', class: "form-group", error_class: 'error' do |b|
-b.use :html5
-b.use :placeholder
-b.use :label
-b.wrapper tag: 'div', class: 'checkbox' do |input|
-input.wrapper tag: 'label' do |checkbox|
-checkbox.use :input
-end
-input.use :hint, wrap_with: { tag: 'span', class: 'help-block' }
-input.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-end
-end
+  config.wrappers :checkbox, tag: 'div', class: "form-group", error_class: 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper tag: 'div', class: 'checkbox' do |input|
+      input.wrapper tag: 'label' do |checkbox|
+        checkbox.use :input
+      end
+      input.use :hint, wrap_with: { tag: 'span', class: 'help-block' }
+      input.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
+    end
+  end
 
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
   # Check the Bootstrap docs (http://getbootstrap.com/)
