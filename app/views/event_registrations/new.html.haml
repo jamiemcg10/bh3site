@@ -9,12 +9,18 @@
   = f.input  :kennel
   = f.label  :food_preference
   = f.select :food_preference, EventRegistration::FOOD_OPTIONS
-  = f.input  :gluten_allergy, label: "I have a gluten allergy!"
-  = f.input  :need_crash_space, label: "I need crash space!"
+  %br
+  = f.check_box :gluten_allergy, {}, 1, 0
+  = f.label "I have a gluten allergy!"
+  %br
+  = f.check_box :need_crash_space, {}, 1, 0
+  = f.label "I need crash space!"
+  %br
   = f.check_box  :extra_hab, {}, "Shirt", nil
   = f.label  "I want to purchase a marathon shirt for $25, which will be added to my rego price at checkout!"
   %br
-  %br
   = f.label  "Shirt Size"
   = f.select :extra_hab_size, EventRegistration::SHIRT_SIZES
-  = f.button :submit
+  %br
+  %br
+  = f.button :submit, "Register for BH3 Marathon Hash 2016"
