@@ -1,3 +1,5 @@
+- if flash
+  %h3= flash[:failure]
 %h3 Marathon 2016 Rego Form
 = simple_form_for [@event, @event_registration] do |f|
   = f.input  :hash_name
