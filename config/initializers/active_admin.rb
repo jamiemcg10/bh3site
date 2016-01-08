@@ -19,6 +19,7 @@ ActiveAdmin.setup do |config|
   # config.site_title_image = "logo.png"
 
   # == Default Namespace
+  config.default_namespace = :mismanagement
   #
   # Set the default namespace each administration resource
   # will be added to.
