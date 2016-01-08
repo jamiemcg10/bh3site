@@ -16,11 +16,21 @@
   = f.check_box :need_crash_space, {}, 1, 0
   = f.label "I need crash space!"
   %br
-  = f.check_box  :extra_hab, {}, "Shirt", nil
-  = f.label  "I want to purchase a marathon shirt for $25, which will be added to my rego price at checkout!"
+  %span.extra-hab-checkbox
+    = f.check_box  :extra_hab, {}, "Shirt", nil
+  = f.label  "I want to purchase a marathon shirt for $15, which will be added to my rego price at checkout!"
   %br
-  = f.label  "Shirt Size"
-  = f.select :extra_hab_size, EventRegistration::SHIRT_SIZES
+  %span.extra-hab-size
+    = f.label  "Shirt Size"
+    = f.select :extra_hab_size, EventRegistration::SHIRT_SIZES
   %br
   %br
   = f.button :submit, "Register for BH3 Marathon Hash 2016"
+
+:coffeescript
+  $(document).ready ->
+    $(".extra-hab-size").hide()
+    $(".extra-hab-checkbox").click ->
+      $(".extra-hab-size").toggle()
+      return
+    return
