@@ -32,6 +32,7 @@ ActiveAdmin.register EventRegistration do
     column :extra_hab
     column :extra_hab_size
     column :registration_date
+    column :rego_price
     column :paid
     actions
   end
