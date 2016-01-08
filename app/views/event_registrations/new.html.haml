@@ -8,7 +8,7 @@
   = f.select :food_preference, EventRegistration::FOOD_OPTIONS
   = f.input  :gluten_allergy, label: "I have a gluten allergy!"
   = f.input  :need_crash_space, label: "I need crash space!"
-  = f.check_box  :extra_hab, {}, "Shirt", unchecked_value: nil
+  = f.check_box  :extra_hab, {}, "Shirt", nil
   = f.label  "I want to purchase a marathon shirt for $25, which will be added to my rego price at checkout!"
   %br
   = f.label  "Shirt Size"
