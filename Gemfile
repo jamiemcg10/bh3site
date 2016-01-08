@@ -53,7 +53,8 @@ gem "rails_autolink"
 gem "haml"
 gem "simple_form"
 gem "figaro"
-
+gem "activeadmin", '~> 1.0.0.pre2'
+gem "devise"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

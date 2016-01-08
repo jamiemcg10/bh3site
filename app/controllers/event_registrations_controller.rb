@@ -7,7 +7,6 @@ class EventRegistrationsController < ApplicationController
   def create
     rego = event.event_registrations.build
     if rego.update_attributes(rego_params[:event_registration])
-      flash[:notice] = "You're registered for BH3 Marathon 2016!"
       return_url = "#{request.protocol}#{request.host_with_port}/paypal/success/#{event.url_code}";
       redirect_to controller: 'pay', action: 'index', price: '00.02', event_name: "#{event.url_code}", return_url: return_url 
     else
