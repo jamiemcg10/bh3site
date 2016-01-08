@@ -220,8 +220,8 @@ DEPENDENCIES
   activeadmin (~> 1.0.0.pre2)
   capybara
   coffee-rails (~> 4.0.0)
-  figaro
   devise
+  figaro
   geocoder
   haml
   jbuilder (~> 1.2)
