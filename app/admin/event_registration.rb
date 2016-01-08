@@ -1,4 +1,6 @@
 ActiveAdmin.register EventRegistration do
+  permit_params :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, :food_preference, :gluten_allergy, :need_crash_space, :extra_hab, :extra_hab_size, :registration_date, :paid
+
   actions :all, except: :destroy
 
   filter :special_event
