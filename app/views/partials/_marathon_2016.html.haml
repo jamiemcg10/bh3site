@@ -32,6 +32,12 @@
 
 %p Crash space will be available for travel hashers! Just indicate that you'll need it when registering. 
 
+%br
+
+%h3 Running the real Boston marathon?
+%p You're eligible for a 26% discount on your rego price!
+%p= ("Email #{mail_to 'orgasmfamine@gmail.com', "Orgasm Famine", subject: 'BH3 Marathon Rego Discount'} for details!").html_safe
+
 %h3 Questions?
-%p Email Orgasm Famine. orgasmfamine@gmail.com
+%p= mail_to "orgasmfamine@gmail.com", "Email Orgasm Famine", subject: "BH3 Marathon 2016"
 %h2= link_to "REGO NOW!", new_special_event_event_registration_path(@event)
