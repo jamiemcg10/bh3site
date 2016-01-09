@@ -24,7 +24,7 @@ class PayController < ApplicationController
 
 		  	  # update the rego record
 		  	  event = SpecialEvent.find_by url_code: url_code
-		  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id, id: rego_id
+		  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id, id: rego_id.to_i
 		  	  rego.paid = true
 		  	  rego.save
 		  end
@@ -37,7 +37,7 @@ class PayController < ApplicationController
 		price = params["price"]
 		event_name = params["event_name"]
 		return_url = params["return_url"]
-		rego_id = params["regod_id"]
+		rego_id = params["rego_id"]
 		# for paypal IPN we have to use https so we can just use the heroku urls
 		notify_url = request.host == "bostonhash.com" ? "https://bh3prod.herokuapp.com/paypal" : "https://bh3demo.herokuapp.com/paypal"
 		redirect_to paypal_url(price,event_name,rego_id,return_url,notify_url)
