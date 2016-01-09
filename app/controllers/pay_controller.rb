@@ -39,7 +39,7 @@ class PayController < ApplicationController
 		return_url = params["return_url"]
 		rego_id = params["rego_id"]
 		# for paypal IPN we have to use https so we can just use the heroku urls
-		notify_url = request.host["bostonhash.com"] ? "https://bh3prod.herokuapp.com/paypal" : "https://bh3demo.herokuapp.com/paypal"
+		notify_url = request.host.include?("bostonhash.com") ? "https://bh3prod.herokuapp.com/paypal" : "https://bh3demo.herokuapp.com/paypal"
 		redirect_to paypal_url(price,event_name,rego_id,return_url,notify_url)
 	end
 
