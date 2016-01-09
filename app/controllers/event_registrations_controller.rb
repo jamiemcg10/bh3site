@@ -8,7 +8,7 @@ class EventRegistrationsController < ApplicationController
     rego = event.event_registrations.build
     if rego.update_attributes(update_params)
       return_url = "#{request.protocol}#{request.host_with_port}/paypal/success/#{event.url_code}";
-      redirect_to controller: 'pay', action: 'index', price: price, event_name: "#{event.url_code}", return_url: return_url 
+      redirect_to controller: 'pay', action: 'index', price: price, event_name: "#{event.url_code}",rego_id:"{rego.id}", return_url: return_url 
     else
       flash[:failure] = "Please fill out all required fields. Any field marked with * is required!"
       redirect_to new_special_event_event_registration_path(event)

@@ -12,8 +12,9 @@ class PayController < ApplicationController
 		  txn_id = params[:txn_id]
 		  amount = params[:mc_gross]
 		  url_code = params[:item_name]
+		  rego_id = params[:item_number]
 		  
-		  txn = Hash["payer" => payer, "txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
+		  txn = Hash["payer" => payer, "rego_id" => rego_id,"txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
 		  puts txn
 
 		  if validate_ipn(request.raw_post) == false
@@ -23,7 +24,7 @@ class PayController < ApplicationController
 
 		  	  # update the rego record
 		  	  event = SpecialEvent.find_by url_code: url_code
-		  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id
+		  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id, id: rego_id
 		  	  rego.paid = true
 		  	  rego.save
 		  end
@@ -36,16 +37,17 @@ class PayController < ApplicationController
 		price = params["price"]
 		event_name = params["event_name"]
 		return_url = params["return_url"]
+		rego_id = params["regod_id"]
 		# for paypal IPN we have to use https so we can just use the heroku urls
 		notify_url = request.host == "bostonhash.com" ? "https://bh3prod.herokuapp.com/paypal" : "https://bh3demo.herokuapp.com/paypal"
-		redirect_to paypal_url(price,event_name,return_url,notify_url)
+		redirect_to paypal_url(price,event_name,rego_id,return_url,notify_url)
 	end
 
 	def success
 	end
 
  private 
-	 def paypal_url(price,event_name,return_url,notify_url)
+	 def paypal_url(price,event_name,rego_id,return_url,notify_url)
 	    values = {
 	        business: "#{Figaro.env.paypal_email}",
 	        cmd: "_xclick",
@@ -53,7 +55,7 @@ class PayController < ApplicationController
 	        return: return_url,
 	        amount: price,
 	        item_name: event_name,
-	        item_number: '1',
+	        item_number: rego_id,
 	        quantity: '1',
 	        rm: '0',
 	        cbt: 'Back to Boston Hash House Harriers',
