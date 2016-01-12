@@ -41,3 +41,17 @@
 %h3 Questions?
 %p= mail_to "orgasmfamine@gmail.com", "Email Orgasm Famine", subject: "BH3 Marathon 2016"
 %h2= link_to "REGO NOW!", new_special_event_event_registration_path(@event)
+
+%br
+
+%h3 Who's Cumming
+.whos-coming-list{ style: "width: 40%;margin-left: auto;margin-right: auto;" }
+  %table
+    %tbody
+      %tr
+        %td{ style: "align: center;font-weight: bold;"} Hasher
+        %td{ style: "align: center;font-weight: bold;"} Kennel
+      - @event.event_registrations.each do |rego|
+        %tr
+          %td #{rego.hash_name}
+          %td #{rego.kennel}
