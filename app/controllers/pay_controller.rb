@@ -48,12 +48,13 @@ class PayController < ApplicationController
 
  private 
 	 def paypal_url(price,event_name,rego_id,return_url,notify_url)
+	 	cost = notify_url.include?("bostonhash.com") ? price : "0.02"
 	    values = {
 	        business: "#{Figaro.env.paypal_email}",
 	        cmd: "_xclick",
 	        upload: 1,
 	        return: return_url,
-	        amount: price,
+	        amount: cost,
 	        item_name: event_name,
 	        item_number: rego_id,
 	        quantity: '1',
