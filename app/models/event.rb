@@ -4,7 +4,6 @@
 class Event 
   
   def initialize event_hash
-
     @gid = event_hash["id"]
 
     @summary = event_hash["summary"]
@@ -24,7 +23,12 @@ class Event
     end
     @title = event_hash["summary"]
     @desc = event_hash["description"]
-    @when = event_hash["start"]["dateTime"].to_datetime
+    start = event_hash["start"] 
+    if start.has_key?("dateTime") then
+      @when = start["dateTime"].to_datetime 
+    else
+      @when = start["date"].to_datetime
+    end
   end
   
   def title
