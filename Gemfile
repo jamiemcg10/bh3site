@@ -11,6 +11,7 @@ group :development,:test do
   gem 'capybara'
   gem 'json'
   gem 'pry-rails'
+  gem "rspec-its"
   gem 'rspec-rails', '~> 3.0'
   gem "shoulda-matchers"
   gem 'sqlite3'
