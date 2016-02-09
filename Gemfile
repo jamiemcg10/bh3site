@@ -8,17 +8,21 @@ gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 group :development,:test do
-  gem 'rspec-rails', '~> 2.0'
-  gem 'sqlite3'
   gem 'capybara'
-  gem 'pry-rails'
   gem 'json'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem "shoulda-matchers"
+  gem 'sqlite3'
 end
 
 group :production do
   gem 'pg'
   gem 'rails_12factor' # need this for asset compilation on heroku
   gem 'unicorn'
+end
+
+group :test do
 end
 
 # Use SCSS for stylesheets
