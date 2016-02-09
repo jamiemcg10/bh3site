@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
   VALID_JSON = '  {
    "kind": "calendar#event",
