@@ -4,7 +4,7 @@ require 'json'
 
 describe Event do
   
-  VALID_JSON = '  {
+  VALID_EVENT_JSON = '  {
    "kind": "calendar#event",
    "etag": "\"2892629564664000\"",
    "id": "1l9b73b3ankvdl1h9me5dg87ns_20151227T193000Z",
@@ -39,27 +39,26 @@ describe Event do
   }'
   
   describe  "new event with valid xml should return valid object" do
-    event = Event.new JSON.parse(VALID_JSON)
+    event = Event.new JSON.parse(VALID_EVENT_JSON)
     
     it "returns an object when given valid hash" do
-      event.should_not be_nil
+      expect(event).not_to be_nil
     end
     
     it "has a correct title" do
-       event.title.should == "Saint Stephen\'s Day Trail"
+      expect(event.title).to eq "Saint Stephen\'s Day Trail"
     end
     
     it "has a description" do
-       event.description.length.should > 0
+      expect(event.description.length).not_to eq 0
     end
     
     it "has a valid start date" do
-      date = DateTime.new(2015, 12, 27, 14, 30)
-      event.when.should == date
+      expect(event.when).to eq DateTime.new(2015, 12, 27, 14, 30)
     end
     
     it "has a location" do
-      event.where.should == "John Harvard\'s, 33 Dunster St, Cambridge, MA 02138, United States"
+      expect(event.where).to eq "John Harvard\'s, 33 Dunster St, Cambridge, MA 02138, United States"
     end
   end
   
