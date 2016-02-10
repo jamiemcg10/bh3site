@@ -1,6 +1,6 @@
 require "rails_helper"
 
-VALID_JSON = '{
+VALID_CALENDAR_EVENT_JSON = '{
   "kind": "calendar#event",
   "etag": "\"2892629564664000\"",
   "id": "1l9b73b3ankvdl1h9me5dg87ns_20151227T193000Z",
@@ -36,7 +36,7 @@ VALID_JSON = '{
 
 describe 'static/welcome.html.erb' do
   it "displays next event title correctly" do
-  	ev = Event.new JSON.parse(VALID_JSON)
+  	ev = Event.new JSON.parse(VALID_CALENDAR_EVENT_JSON)
     assign(:next_hash,ev)
 
     render
@@ -44,7 +44,7 @@ describe 'static/welcome.html.erb' do
   end
 
   it "displays the map" do
-  	ev = Event.new JSON.parse(VALID_JSON)
+  	ev = Event.new JSON.parse(VALID_CALENDAR_EVENT_JSON)
     assign(:next_hash,ev)
 
     render
@@ -52,7 +52,7 @@ describe 'static/welcome.html.erb' do
   end
   
   it "converts urls to proper external links" do
-  	ev = Event.new JSON.parse(VALID_JSON.sub(/The hash,/m,'http://google.com')) 
+  	ev = Event.new JSON.parse(VALID_CALENDAR_EVENT_JSON.sub(/The hash,/m,'http://google.com')) 
     assign(:next_hash,ev)
 
     render

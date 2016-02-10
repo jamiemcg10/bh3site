@@ -4,7 +4,7 @@ require 'json'
 
 describe Event do
   
-  VALID_JSON = '  {
+  VALID_EVENT_JSON = '  {
    "kind": "calendar#event",
    "etag": "\"2892629564664000\"",
    "id": "1l9b73b3ankvdl1h9me5dg87ns_20151227T193000Z",
@@ -39,7 +39,7 @@ describe Event do
   }'
   
   describe  "new event with valid xml should return valid object" do
-    event = Event.new JSON.parse(VALID_JSON)
+    event = Event.new JSON.parse(VALID_EVENT_JSON)
     
     it "returns an object when given valid hash" do
       expect(event).not_to be_nil
