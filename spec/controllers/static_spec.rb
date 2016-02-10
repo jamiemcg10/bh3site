@@ -31,9 +31,8 @@ describe StaticController do
     it "gets the next hash details from the google calendar" do
       @controller = StaticController.new
       hash = @controller.instance_eval{ get_next_hash(0) } 
-      hash.should_not be_nil
-    end
-  
+      expect(hash).not_to be_nil
+    end  
   end
   
   describe "GET #calendar" do
