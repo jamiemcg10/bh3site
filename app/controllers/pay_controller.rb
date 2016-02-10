@@ -6,30 +6,30 @@ class PayController < ApplicationController
 
 	# this guy will catch the paypal ipn
 	def catch
-		  params.permit! # Permit all Paypal input params
-		  pp_status = params[:payment_status]
-		  payer =  params[:payer_email]
-		  txn_id = params[:txn_id]
-		  amount = params[:mc_gross]
-		  url_code = params[:item_name]
-		  rego_id = params[:item_number]
-		  
-		  txn = Hash["payer" => payer, "rego_id" => rego_id,"txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
-		  puts txn
+	  params.permit! # Permit all Paypal input params
+	  pp_status = params[:payment_status]
+	  payer =  params[:payer_email]
+	  txn_id = params[:txn_id]
+	  amount = params[:mc_gross]
+	  url_code = params[:item_name]
+	  rego_id = params[:item_number]
+	  
+	  txn = Hash["payer" => payer, "rego_id" => rego_id,"txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code] 
+	  puts txn
 
-		  if validate_ipn(request.raw_post) == false
-		  	raise "ipn not validated"
-		  end
-		  if pp_status == "Completed"
+	  if validate_ipn(request.raw_post) == false
+	  	raise "ipn not validated"
+	  end
+	  if pp_status == "Completed"
 
-		  	  # update the rego record
-		  	  event = SpecialEvent.find_by url_code: url_code
-		  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id, id: rego_id.to_i
-		  	  rego.paid = true
-		  	  rego.save
-		  end
-		
-		  render :text => params
+	  	  # update the rego record
+	  	  event = SpecialEvent.find_by url_code: url_code
+	  	  rego = EventRegistration.find_by payment_email: payer, special_event_id: event.id, id: rego_id.to_i
+	  	  rego.paid = true
+	  	  rego.save
+	  end
+	
+	  render :text => params
 	end
 
 	# this guy will redirect the user to paypal to get their $$
@@ -46,44 +46,41 @@ class PayController < ApplicationController
 	def success
 	end
 
- private 
-	 def paypal_url(price,event_name,rego_id,return_url,notify_url)
-	    values = {
-	        business: "#{Figaro.env.paypal_email}",
-	        cmd: "_xclick",
-	        upload: 1,
-	        return: return_url,
-	        amount: price,
-	        item_name: event_name,
-	        item_number: rego_id,
-	        quantity: '1',
-	        rm: '0',
-	        cbt: 'Back to Boston Hash House Harriers',
-	        notify_url: notify_url
-	    }
-	    url = "#{Figaro.env.paypal_url}" + values.to_query
-	    puts url
-	    return url
-	  end
+  private
 
-	  # take raw ipn and validate it
-	  def validate_ipn(raw)
-	  	post_data = "cmd=_notify-validate&" + raw
-	  	url = URI.parse(Figaro.env.ipn_validate_url)
-	  	http = Net::HTTP.new(url.host, url.port)
-		http.use_ssl = true
+  def paypal_url(price,event_name,rego_id,return_url,notify_url)
+    values = {
+        business: "#{Figaro.env.paypal_email}",
+        cmd: "_xclick",
+        upload: 1,
+        return: return_url,
+        amount: price,
+        item_name: event_name,
+        item_number: rego_id,
+        quantity: '1',
+        rm: '0',
+        cbt: 'Back to Boston Hash House Harriers',
+        notify_url: notify_url
+    }
+    url = "#{Figaro.env.paypal_url}" + values.to_query
+    puts url
+    return url
+  end
 
-		request = Net::HTTP::Post.new(url.path)
-		request.body = post_data
+  # take raw ipn and validate it
+  def validate_ipn(raw)
+  	post_data = "cmd=_notify-validate&" + raw
+  	url = URI.parse(Figaro.env.ipn_validate_url)
+  	http = Net::HTTP.new(url.host, url.port)
+  	http.use_ssl = true
 
-		response = http.request(request)
-		body = response.body()
-		http_status = response.code
+  	request = Net::HTTP::Post.new(url.path)
+  	request.body = post_data
 
-		return http_status == "200" && body == "VERIFIED"
-	  end
-	  	
-	  
+  	response = http.request(request)
+  	body = response.body()
+  	http_status = response.code
 
-
+  	return http_status == "200" && body == "VERIFIED"
+  end
 end
