@@ -62,3 +62,11 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    # Includes active_record, active_model and action_controller libraries
+    with.library :rails
+  end
+end
