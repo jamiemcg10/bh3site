@@ -1,5 +1,4 @@
 require "rails_helper"
-include Rails.application.routes.url_helpers
 
 describe EventRegistrationsController do
   let(:event) { SpecialEvent.create(name: "Awesome Event", date: 1.month.from_now.to_date, url_code: "awesome_event") }
