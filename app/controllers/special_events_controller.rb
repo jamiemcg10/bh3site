@@ -15,6 +15,6 @@ class SpecialEventsController < ApplicationController
   private
 
   def find_event_by_url_code
-    SpecialEvent.find_by(url_code: params[:url_code])
+    SpecialEvent.find_by!(url_code: params[:url_code])
   end
 end
