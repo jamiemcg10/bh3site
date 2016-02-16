@@ -4,11 +4,7 @@ class StaticController < ApplicationController
   CAL_URL = "https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?key=AIzaSyCMZCb6nbsoAyOwuBDD2pRrvMf1rjYSANc&futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin="
 
   def welcome
-    if !params[:id] then
-      params[:id] = 0
-    end
-    
-    @next_hash = get_next_hash(params[:id].to_f)
+    @next_hash = get_next_hash(id)
   end
   
   def more
@@ -21,6 +17,10 @@ class StaticController < ApplicationController
   end
   
   private 
+
+  def id
+    params[:id].to_i ||= 0
+  end
 
   def get_next_hash(id)
       url = CAL_URL + Time.zone.now.beginning_of_day.iso8601
