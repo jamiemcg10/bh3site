@@ -24,8 +24,8 @@ class StaticController < ApplicationController
 
   def get_next_hash(id)
       url = CAL_URL + Time.zone.now.beginning_of_day.iso8601
-      cal_results = open(url)
-      ev = JSON.parse(File.open(cal_results).read)["items"][0]
+      cal_results = open(url).read
+      ev = JSON.parse(cal_results)["items"][id]
       Event.new ev
   rescue Exception => e
       puts e
