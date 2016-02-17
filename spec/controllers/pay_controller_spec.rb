@@ -27,11 +27,40 @@ describe PayController do
 
   describe "POST #catch" do
     let(:payment_status) { "Completed" }
+    let(:rego_id) { rego.id }
+    let(:paypal_params) { { payer_email: rego.payment_email, txn_id: 1, mc_gross: price, item_name: event.url_code, item_number: rego_id, payment_status: payment_status } }
 
-    before { post :catch, payer_email: rego.payment_email, txn_id: 1, mc_gross: price, item_name: event.url_code, item_number: rego.id, payment_status: payment_status }
+    before do
+      allow($stdout).to receive(:write)
+      allow_any_instance_of(PayController).to receive(:validate_ipn).and_return(true) 
+      post :catch, paypal_params
+    end
+
+    it "responds with success" do
+      expect(response.status).to eq 200
+    end
 
     it "updates the payment status of the rego" do
-      expect(rego.paid).to be true
+      expect(rego.reload.paid).to be true
+    end
+
+    context "payment has not been completed" do
+      let(:payment_status) { "Failed" }
+      it "responds with success" do
+        expect(response.status).to eq 200
+      end
+
+      it "does not update the payment status of the rego" do
+        expect(rego.reload.paid).to be false
+      end
+    end
+
+    context "invalid registration information" do
+      let(:rego_id) { "9999" }
+
+      it "responds" do
+        expect(response.status).to eq 404
+      end
     end
   end
 end

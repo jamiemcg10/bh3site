@@ -11,17 +11,17 @@ class PayController < ApplicationController
   end
 
 	def catch
-	  params.permit! # Permit all Paypal input params
-	  payer =  params[:payer_email]
-	  txn_id = params[:txn_id]
-	  amount = params[:mc_gross]
-	  url_code = params[:item_name]
-	  rego_id = params[:item_number]
-	  txn = Hash["payer" => payer, "rego_id" => rego_id, "txn_id" => txn_id, "amount" => amount, "status" => pp_status, "event" => url_code]
+    payment_status = catch_params[:payment_status]
+	  payer_email =  catch_params[:payer_email]
+	  txn_id = catch_params[:txn_id]
+	  amount = catch_params[:mc_gross]
+	  url_code = catch_params[:item_name]
+	  rego_id = catch_params[:item_number]
+	  txn = Hash["payer" => payer_email, "rego_id" => rego_id, "txn_id" => txn_id, "amount" => amount, "status" => payment_status, "event" => url_code]
 
     raise "IPN not validated" unless validate_ipn(request.raw_post) == true
 
-	  mark_rego_as_paid if params[:payment_status] == "Completed"
+	  mark_rego_as_paid(payer_email, rego_id) if payment_status == "Completed"
 
 	  render text: params
 	end
@@ -36,27 +36,30 @@ class PayController < ApplicationController
   end
 
   def catch_params
-    params.permit(:payer_email, :txn_id, :mc_gross, :item_name, :item_number, :payment_status)
+    params.permit(:payment_status, :payer_email, :txn_id, :mc_gross, :item_name, :item_number)
   end
 
-  def mark_rego_as_paid
-    rego = EventRegistration.find_by payment_email: payer, id: rego_id.to_i
+  def mark_rego_as_paid(payer_email, rego_id)
+    rego = EventRegistration.find_by payment_email: payer_email, id: rego_id.to_i
     rego.update_attributes(paid: true)
+  rescue NoMethodError
+    puts "IPN error for rego id: #{rego_id} and payment_email: #{payer_email}"
+    raise ActiveRecord::RecordNotFound
   end
 
   def paypal_url(price, event_name, rego_id, return_url, notify_url)
     values = {
-        business: "#{Figaro.env.paypal_email}",
-        cmd: "_xclick",
-        upload: 1,
-        return: return_url,
-        amount: price,
-        item_name: event_name,
-        item_number: rego_id,
-        quantity: '1',
-        rm: '0',
-        cbt: 'Back to Boston Hash House Harriers',
-        notify_url: notify_url
+      business: "#{Figaro.env.paypal_email}",
+      cmd: "_xclick",
+      upload: 1,
+      return: return_url,
+      amount: price,
+      item_name: event_name,
+      item_number: rego_id,
+      quantity: '1',
+      rm: '0',
+      cbt: 'Back to Boston Hash House Harriers',
+      notify_url: notify_url
     }
     
     "#{Figaro.env.paypal_endpoint}" + values.to_query
@@ -64,18 +67,18 @@ class PayController < ApplicationController
 
   # take raw ipn and validate it
   def validate_ipn(raw)
-  	post_data = "cmd=_notify-validate&" + raw
-  	url = URI.parse(Figaro.env.ipn_validate_endpoint)
-  	http = Net::HTTP.new(url.host, url.port)
-  	http.use_ssl = true
+    post_data = "cmd=_notify-validate&" + raw
+    url = URI.parse(Figaro.env.ipn_validate_endpoint)
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
 
-  	request = Net::HTTP::Post.new(url.path)
-  	request.body = post_data
+    request = Net::HTTP::Post.new(url.path)
+    request.body = post_data
 
-  	response = http.request(request)
-  	body = response.body()
-  	http_status = response.code
+    response = http.request(request)
+    body = response.body()
+    http_status = response.code
 
-  	return http_status == "200" && body == "VERIFIED"
+    return http_status == "200" && body == "VERIFIED"
   end
 end
