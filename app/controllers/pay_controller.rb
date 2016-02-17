@@ -10,24 +10,24 @@ class PayController < ApplicationController
     redirect_to paypal_url(index_params[:price], index_params[:event_name], index_params[:rego_id], index_params[:return_url], notify_url)
   end
 
-	def catch
+  def catch
     payment_status = catch_params[:payment_status]
-	  payer_email =  catch_params[:payer_email]
-	  txn_id = catch_params[:txn_id]
-	  amount = catch_params[:mc_gross]
-	  url_code = catch_params[:item_name]
-	  rego_id = catch_params[:item_number]
-	  txn = Hash["payer" => payer_email, "rego_id" => rego_id, "txn_id" => txn_id, "amount" => amount, "status" => payment_status, "event" => url_code]
+    payer_email =  catch_params[:payer_email]
+    txn_id = catch_params[:txn_id]
+    amount = catch_params[:mc_gross]
+    url_code = catch_params[:item_name]
+    rego_id = catch_params[:item_number]
+    txn = Hash["payer" => payer_email, "rego_id" => rego_id, "txn_id" => txn_id, "amount" => amount, "status" => payment_status, "event" => url_code]
 
     raise "IPN not validated" unless validate_ipn(request.raw_post) == true
 
-	  mark_rego_as_paid(payer_email, rego_id) if payment_status == "Completed"
+    mark_rego_as_paid(payer_email, rego_id) if payment_status == "Completed"
 
-	  render text: params
-	end
-
-	def success
-	end
+    render text: params
+  end
+ 
+  def success
+  end
 
   private
 
