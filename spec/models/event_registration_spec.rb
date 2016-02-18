@@ -1,5 +1,4 @@
 require "rails_helper"
-include ActiveSupport::Testing::TimeHelpers
 
 describe EventRegistration do
   it { should validate_presence_of :contact_email }
