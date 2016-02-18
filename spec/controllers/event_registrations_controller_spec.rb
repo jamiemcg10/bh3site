@@ -4,9 +4,7 @@ describe EventRegistrationsController do
   let(:event) { SpecialEvent.create(name: "Awesome Event", date: 1.month.from_now.to_date, url_code: "awesome_event") }
   let(:price) { 69.to_f }
 
-  before do
-    allow(EventRegistration).to receive(:rego_price).and_return(price)
-  end
+  before { allow_any_instance_of(SpecialEvent).to receive(:rego_price).and_return(price) }
 
   describe "#new" do
     before { get :new, special_event_id: event.id }
