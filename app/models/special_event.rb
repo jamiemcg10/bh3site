@@ -1,4 +1,7 @@
 class SpecialEvent < ActiveRecord::Base
+  FOOD_OPTIONS = ["Carnivore", "Vegetarian"]
+  HAB_SIZES = ["S", "M", "L", "XL"]
+
   validates :name, :date, :url_code, presence: true
 
   serialize :tiered_rego_prices, JSON

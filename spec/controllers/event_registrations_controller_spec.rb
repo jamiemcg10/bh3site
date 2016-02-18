@@ -1,8 +1,9 @@
 require "rails_helper"
 
 describe EventRegistrationsController do
-  let(:event) { SpecialEvent.create(name: "Awesome Event", date: 1.month.from_now.to_date, url_code: "awesome_event") }
+  let(:event) { SpecialEvent.create(name: "Awesome Event", date: 1.month.from_now.to_date, url_code: "awesome_event", extra_hab_type: "Shirt", extra_hab_price: hab_price) }
   let(:price) { 69.to_f }
+  let(:hab_price) { 15.to_f }
 
   before { allow_any_instance_of(SpecialEvent).to receive(:rego_price).and_return(price) }
 
@@ -38,6 +39,19 @@ describe EventRegistrationsController do
 
     it "redirects to PayPal" do
       expect(response).to redirect_to(controller: "pay", action: "index", price: price, event_name: event.url_code, rego_id: EventRegistration.first.id, return_url: "#{request.protocol}#{request.host_with_port}/paypal/success/#{event.url_code}")
+    end
+
+    context "the registration includes extra hab" do
+      let(:extra_hab) { "Shirt" }
+
+      it "adds extra hab to the event registration" do
+        expect(EventRegistration.first.extra_hab).to eq extra_hab
+        expect(EventRegistration.first.extra_hab_size).to eq extra_hab_size
+      end
+
+      it "adds the price of the hab to the rego price" do
+        expect(EventRegistration.first.rego_price).to eq(price + hab_price)
+      end
     end
 
     context "required registration information is missing" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218152631) do
+ActiveRecord::Schema.define(version: 20160218201753) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 20160218152631) do
     t.text     "tiered_rego_prices"
     t.text     "tiered_rego_dates"
     t.float    "full_rego_price"
+    t.string   "extra_hab_type"
+    t.float    "extra_hab_price"
   end
 
 end
