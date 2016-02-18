@@ -49,5 +49,13 @@ describe SpecialEvent do
         expect(event.rego_price).to eq full_price
       end
     end
+
+    context "date is the first tiered date" do
+      before { travel_to earliest_date }
+
+      it "sets rego price at the first tier" do
+        expect(event.rego_price).to eq prices.first
+      end
+    end
   end
 end
