@@ -19,7 +19,7 @@
   - if @event.extra_hab_type
     %span.extra-hab-checkbox
       = f.check_box  :extra_hab, {}, "#{@event.extra_hab_type}", nil
-    = f.label  "I want to purchase a marathon shirt for $15, which will be added to my rego price at checkout!"
+    = f.label  "I want to purchase a #{@event.url_code.humanize} #{@event.extra_hab_type} for $#{@event.extra_hab_price.to_i}, which will be added to my rego price at checkout!"
     %br
     %span.extra-hab-size
       = f.label  "#{@event.extra_hab_type} Size"
