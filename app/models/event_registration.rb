@@ -1,6 +1,4 @@
 class EventRegistration < ActiveRecord::Base
-  FOOD_OPTIONS = ["Carnivore", "Vegetarian"]
-  SHIRT_SIZES = ["S", "M", "L", "XL"]
   HAB_PRICE = 15
 
   validates :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, presence: true

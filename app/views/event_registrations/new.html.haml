@@ -8,7 +8,7 @@
   = f.input  :payment_email, label: "Payment Email (for PayPal)"
   = f.input  :kennel
   = f.label  :food_preference
-  = f.select :food_preference, EventRegistration::FOOD_OPTIONS
+  = f.select :food_preference, SpecialEvent::FOOD_OPTIONS
   %br
   = f.check_box :gluten_allergy, {}, 1, 0
   = f.label "I have a gluten allergy!"
@@ -22,7 +22,7 @@
   %br
   %span.extra-hab-size
     = f.label  "Unisex Shirt Size"
-    = f.select :extra_hab_size, EventRegistration::SHIRT_SIZES
+    = f.select :extra_hab_size, SpecialEvent::HAB_SIZES
   %br
   %br
   %p You will be redirected to PayPal after registering to, you know, pay.
