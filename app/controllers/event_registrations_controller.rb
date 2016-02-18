@@ -30,7 +30,7 @@ class EventRegistrationsController < ApplicationController
   end
 
   def price
-    total = ordered_extra_hab? ? (event.rego_price + EventRegistration::HAB_PRICE).to_s : event.rego_price.to_s
+    total = ordered_extra_hab? ? (event.rego_price + event.extra_hab_price).to_s : event.rego_price.to_s
     total.to_f
   end
 

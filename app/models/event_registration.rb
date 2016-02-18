@@ -1,6 +1,4 @@
 class EventRegistration < ActiveRecord::Base
-  HAB_PRICE = 15
-
   validates :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, presence: true
 
   belongs_to :special_event

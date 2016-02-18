@@ -16,13 +16,14 @@
   = f.check_box :need_crash_space, {}, 1, 0
   = f.label "I need crash space!"
   %br
-  %span.extra-hab-checkbox
-    = f.check_box  :extra_hab, {}, "Shirt", nil
-  = f.label  "I want to purchase a marathon shirt for $15, which will be added to my rego price at checkout!"
-  %br
-  %span.extra-hab-size
-    = f.label  "Unisex Shirt Size"
-    = f.select :extra_hab_size, SpecialEvent::HAB_SIZES
+  - if @event.extra_hab_type
+    %span.extra-hab-checkbox
+      = f.check_box  :extra_hab, {}, "@event.extra_hab_type", nil
+    = f.label  "I want to purchase a marathon shirt for $15, which will be added to my rego price at checkout!"
+    %br
+    %span.extra-hab-size
+      = f.label  "#{@event.extra_hab_type} Size"
+      = f.select :extra_hab_size, SpecialEvent::HAB_SIZES
   %br
   %br
   %p You will be redirected to PayPal after registering to, you know, pay.
