@@ -43,5 +43,6 @@ pre {
  white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
  white-space: -pre-wrap !important;      /* Opera 4-6 */
  white-space: -o-pre-wrap !important;    /* Opera 7 */
- word-wrap: normal !important;       /* Internet Explorer 5.5+ */
+ word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+ word-break: normal !important;
 }
