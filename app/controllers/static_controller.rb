@@ -26,7 +26,16 @@ class StaticController < ApplicationController
       url = CAL_URL + Time.zone.now.beginning_of_day.iso8601
       cal_results = open(url).read
       ev = JSON.parse(cal_results)["items"][id]
-      Event.new ev
+      next_ev = Event.new ev
+
+      # From best I can tell this is a google cal api bug, we're occasionally getting an item from the previous day when we should not.
+      # Typically this isn't a big deal and sorts itself in a day or so.  But when we have lots of events in a short span - ie marathon week - this is problematic
+      # In fairness to them I think this feed we use is some kind of forgotten back door
+      if id == 0 and next_ev.when < Time.zone.now.beginning_of_day then
+        ev = JSON.parse(cal_results)["items"][id + 1]
+        next_ev = Event.new ev
+      end
+      return next_ev
   rescue Exception => e
       puts e
   end
