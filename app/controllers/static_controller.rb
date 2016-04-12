@@ -24,7 +24,7 @@ class StaticController < ApplicationController
 
   def get_next_hash(id)
       url = CAL_URL + Time.zone.now.beginning_of_day.iso8601
-      cal_results = open(url).read
+      cal_results = open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
       ev = JSON.parse(cal_results)["items"][id]
       next_ev = Event.new ev
 
