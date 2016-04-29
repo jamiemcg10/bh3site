@@ -1,0 +1,40 @@
+%div
+  %div
+    %div
+      %div.centered
+        %h4= ("Interested in haring a trail or being bag car*? Email the Boston H3 Hare Raisers at: #{mail_to "bostonh3hareraiser@gmail.com"}").html_safe
+        %p *Without bag car, there is no beer! Return the favor and volunteer!
+      :javascript
+        $(document).ready(function() {
+          var calApiKey = 'AIzaSyC93cQGDRfpguqdsNMIEEYRKXeIZzcgr28';
+          var calId = 'bostonhash@gmail.com';
+          $('#calendar').fullCalendar({
+            events: {
+              googleCalendarApiKey: calApiKey,
+              googleCalendarId: calId
+            },
+          defaultView: 'month',
+            eventClick: function(calEvent, jsEvent, view) {
+              if (calEvent.url) {
+                window.open(calEvent.url);
+                return false;
+              }
+            }
+          });
+
+          $('#mobile-calendar').fullCalendar({
+            events: {
+              googleCalendarApiKey: calApiKey,
+              googleCalendarId: calId
+          },
+          defaultView: 'basicWeek',
+            eventClick: function(calEvent, jsEvent, view) {
+              if (calEvent.url) {
+                window.open(calEvent.url);
+                return false;
+              }
+            }
+          });
+        });
+      %div{ id: "calendar", class: "hidden-xs" }
+      %div{ id: "mobile-calendar", class: "visible-xs"}
