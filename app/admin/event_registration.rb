@@ -3,6 +3,12 @@ ActiveAdmin.register EventRegistration do
 
   actions :all, except: :destroy
 
+  SpecialEvent.all.order(date: :desc).each do |event|
+    scope event.name.to_sym do |registrations|
+      registrations.for_event(event)
+    end
+  end
+
   filter :special_event
   filter :contact_email
   filter :hash_name
