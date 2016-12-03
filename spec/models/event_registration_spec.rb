@@ -16,4 +16,20 @@ describe EventRegistration do
     its(:registration_date) { should eq Date.current }
     its(:paid)              { should be false }
   end
+
+  describe ".for_event" do
+    let(:current_event) { FactoryGirl.create :special_event }
+    let(:current_event_registration) { FactoryGirl.create :event_registration, special_event: current_event }
+    let(:previous_event) { FactoryGirl.create :special_event }
+    let(:previous_event_registration) { FactoryGirl.create :event_registration, special_event: previous_event }
+    let(:scope) { EventRegistration.for_event(current_event) }
+
+    it 'includes the current event registration' do
+      expect(scope).to include(current_event_registration)
+    end
+
+    it 'does not include the previous event registration' do
+      expect(scope).not_to include(previous_event_registration)
+    end
+  end
 end

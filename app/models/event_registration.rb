@@ -5,6 +5,8 @@ class EventRegistration < ActiveRecord::Base
 
   after_initialize :set_defaults, if: :new_record?
 
+  scope :for_event, -> (event) { where(special_event: event) }
+
   private
 
   def set_defaults

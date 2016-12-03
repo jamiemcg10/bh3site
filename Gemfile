@@ -9,6 +9,7 @@ gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
 group :development,:test do
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'json'
   gem 'pry-rails'
   gem "rspec-its"
