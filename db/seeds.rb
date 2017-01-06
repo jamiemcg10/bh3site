@@ -18,9 +18,9 @@ if !SpecialEvent.find_by(name: "Boston H3 Marathon 2017")
     name: "Boston H3 Marathon 2017",
     date: Date.parse("2017-04-15"),
     url_code: "marathon_2017",
-    tiered_rego_prices: [],
-    tiered_rego_dates: [],
-    full_rego_price: 0,
+    tiered_rego_prices: [69, 79],
+    tiered_rego_dates: [Date.parse("2017-02-09"), Date.parse("2017-03-31")],
+    full_rego_price: 89,
     extra_hab_type: nil,
     extra_hab_price: nil
   )

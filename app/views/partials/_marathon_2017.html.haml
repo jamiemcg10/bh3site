@@ -1,0 +1,65 @@
+- if flash[:notice]
+  %h1
+    = flash[:notice]
+%br
+%p Back before there was hashing, back before there was even beer...there were
+%h1 Cavemen and Dinosaurs!
+%p Ae you a horny dinosaur? How large is your loincloth?
+
+%h2= link_to "Rego Now Open!", new_special_event_event_registration_path(@event)
+
+%br
+
+%p Event: April 14th - 17th, 2017
+
+%h3 Rego pricing:
+%p $69 through February 9th
+%p $79 through March 31st
+%p $89 thereafter
+
+%br
+
+%h3 Your $$$ gets you:
+%p THREE DAYS OF EVENTS!
+%p Saturday: Trail, Beer, Circle, Dinner, Give-Away, Dancing
+%p Sunday: Fatboy trail, beer, circle
+%p Monday: Watch the Marathon at Mile 20 with beer and food provided
+
+%br
+
+%p Get to Boston on Friday the 14th and kick the weekend off with a beer mile!
+
+%br
+
+%p Will you be in Boston earlier? There will be prelube events for the entire week before the event!
+%p Full schedule cumming soon.
+%p Crash space will be available for travel hashers! Just indicate that you'll need it when registering.
+
+%br
+
+%h3 Running the real Boston marathon?
+%p You're eligible for a 26% discount on your rego price!
+%p= ("Email #{mail_to 'orgasmfamine@gmail.com', "Orgasm Famine", subject: 'BH3 Marathon Rego Discount'} for details!").html_safe
+
+%br
+
+%h3 Questions?
+%p= mail_to "orgasmfamine@gmail.com", "Email Orgasm Famine", subject: "BH3 Marathon 2016"
+
+%br
+
+%h2= link_to "Rego Now Open!", new_special_event_event_registration_path(@event)
+
+%br
+
+%h3 Who's Cumming
+.whos-coming-list{ style: "width: 40%;margin-left: auto;margin-right: auto;" }
+  %table
+    %tbody
+      %tr
+        %td{ style: "align: center;font-weight: bold;"} Hasher
+        %td{ style: "align: center;font-weight: bold;"} Kennel
+      - @event.event_registrations.order(:id).each do |rego|
+        %tr
+          %td #{rego.hash_name}
+          %td #{rego.kennel}
