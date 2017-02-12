@@ -9,11 +9,12 @@ describe SpecialEvent do
 
   describe "#rego_price" do
     subject(:event) { SpecialEvent.create(name: "Awesome Event", date: Date.parse("2016-05-01"), url_code: "awesome_event", tiered_rego_prices: prices, tiered_rego_dates: dates, full_rego_price: full_price) }
+    let(:time_zone) { "EST" }
     let(:full_price) { 99 }
     let(:prices) { [69, 79, 89] }
-    let(:earliest_date) { Date.parse("2016-02-01") }
-    let(:middle_date) { Date.parse("2016-03-01") }
-    let(:latest_date) { Date.parse("2016-04-01") }
+    let(:earliest_date) { Date.parse("2016-02-01").in_time_zone(time_zone) }
+    let(:middle_date) { Date.parse("2016-03-01").in_time_zone(time_zone) }
+    let(:latest_date) { Date.parse("2016-04-01").in_time_zone(time_zone) }
     let(:dates) { [earliest_date, middle_date, latest_date] }
 
     after { travel_back }
