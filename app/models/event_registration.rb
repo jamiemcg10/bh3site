@@ -1,6 +1,8 @@
 class EventRegistration < ActiveRecord::Base
   validates :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, presence: true
 
+  enum status: [:active, :deleted]
+
   belongs_to :special_event
 
   after_initialize :set_defaults, if: :new_record?
