@@ -15,6 +15,11 @@ class EventRegistrationsController < ApplicationController
     end
   end
 
+  def delete
+    EventRegistration.find(params[:id]).deleted!
+    redirect_to mismanagement_event_registrations_path
+  end
+
   private
 
   def event

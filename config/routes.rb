@@ -8,23 +8,23 @@ Bh3site::Application.routes.draw do
 
 # about routes
   get "/about" => "about#index"
-  get "about/history" 
-  get "about/mismanagement" 
-  
+  get "about/history"
+  get "about/mismanagement"
+
 # cal route
   get "calendar" => "static#calendar", as: :calendar
 
 #static route
   get "static/welcome/:id", to: "static#welcome"
   get "static/events"
-  
+
 #more route
   get "more" => "more#index"
   get "more/email" => "more#index"
   get "more/away" => "more#away"
   get "more/trail" => "more#trail"
-  get "more/habadashery" => "more#habadashery" 
-  
+  get "more/habadashery" => "more#habadashery"
+
 #posts route
   get "posts/:page_number" => "posts#index", as: :hashtrash
   get "posts/index/:page_number" => "posts#index"
@@ -43,7 +43,8 @@ end
   get "pay" => "pay#index"
   get "paypal/success/:url_code" => "pay#success"
 
-
+#event_registrations routes
+  post "event_registrations/:id/delete" => "event_registrations#delete", as: :delete_registration
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -84,7 +85,7 @@ end
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

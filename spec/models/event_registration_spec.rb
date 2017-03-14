@@ -7,6 +7,7 @@ describe EventRegistration do
   it { should validate_presence_of :kennel }
   it { should validate_presence_of :payment_email }
   it { should belong_to :special_event }
+  it { should define_enum_for :status }
 
   describe "setting defaults upon creation" do
     subject(:rego) { EventRegistration.create(contact_email: "user@example.com", hash_name: "Test Hasher", nerd_name: "Nerd Name", kennel: "H3", payment_email: "user@example.com") }
