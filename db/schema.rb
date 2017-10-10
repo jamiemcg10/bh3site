@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20170314215548) do
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
+    t.string   "namespace",     limit: 255
     t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
+    t.string   "resource_id",   limit: 255, null: false
+    t.string   "resource_type", limit: 255, null: false
     t.integer  "author_id"
-    t.string   "author_type"
+    t.string   "author_type",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,18 +29,18 @@ ActiveRecord::Schema.define(version: 20170314215548) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
@@ -48,27 +48,36 @@ ActiveRecord::Schema.define(version: 20170314215548) do
 
   create_table "event_registrations", force: :cascade do |t|
     t.integer  "special_event_id"
-    t.string   "contact_email"
-    t.string   "hash_name"
-    t.string   "nerd_name"
-    t.string   "kennel"
-    t.string   "payment_email"
-    t.string   "food_preference"
+    t.string   "contact_email",     limit: 255
+    t.string   "hash_name",         limit: 255
+    t.string   "nerd_name",         limit: 255
+    t.string   "kennel",            limit: 255
+    t.string   "payment_email",     limit: 255
+    t.string   "food_preference",   limit: 255
     t.boolean  "gluten_allergy"
     t.boolean  "need_crash_space"
-    t.string   "extra_hab"
-    t.string   "extra_hab_size"
+    t.string   "extra_hab",         limit: 255
+    t.string   "extra_hab_size",    limit: 255
     t.date     "registration_date"
     t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rego_price"
-    t.integer  "status",            default: 0
+    t.integer  "status",                        default: 0
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "google_id",  limit: 255
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "location",   limit: 255
   end
 
   create_table "hash_events", force: :cascade do |t|
-    t.string   "google_id"
-    t.string   "location"
+    t.string   "google_id",  limit: 255
+    t.string   "location",   limit: 255
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at"
@@ -76,24 +85,43 @@ ActiveRecord::Schema.define(version: 20170314215548) do
   end
 
   create_table "site_sections", force: :cascade do |t|
-    t.string   "tag"
-    t.string   "data_type"
+    t.string   "tag",        limit: 255
+    t.string   "data_type",  limit: 255
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "special_events", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",               limit: 255
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "url_code"
+    t.string   "url_code",           limit: 255
     t.text     "tiered_rego_prices"
     t.text     "tiered_rego_dates"
     t.float    "full_rego_price"
     t.string   "extra_hab_type"
     t.float    "extra_hab_price"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                   limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
