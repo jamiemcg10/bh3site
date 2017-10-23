@@ -23,7 +23,7 @@ describe SpecialEventsController do
   describe "#show" do
     let(:url_code) { first_upcoming_event.url_code }
 
-    before { get :show, url_code: url_code }
+    before { get :show, params: { url_code: url_code }}
 
     it "returns success with a valid url code" do
       assert_response :success
@@ -41,7 +41,7 @@ describe SpecialEventsController do
   describe "#rego" do
     let(:url_code) { first_upcoming_event.url_code }
 
-    before { get :show, url_code: url_code }
+    before { get :show, params: { url_code: url_code } }
 
     it "returns success with a valid url code" do
       assert_response :success

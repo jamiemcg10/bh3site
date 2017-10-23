@@ -10,7 +10,7 @@ describe PostsController do
     end
     
     it "returns http success for a page" do
-      get :index, :page_number => 2 
+      get :index, params: { :page_number => 2 }
 
       expect(response).to be_success
       expect(response.status).to eq(200)

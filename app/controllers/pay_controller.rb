@@ -23,7 +23,7 @@ class PayController < ApplicationController
 
     mark_rego_as_paid(payer_email, rego_id) if payment_status == "Completed"
 
-    render text: params
+    render plain: params
   end
  
   def success

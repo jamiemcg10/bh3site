@@ -8,7 +8,7 @@ describe EventRegistrationsController do
   before { allow_any_instance_of(SpecialEvent).to receive(:rego_price).and_return(price) }
 
   describe "#new" do
-    before { get :new, special_event_id: event.id }
+    before { get :new, params: { special_event_id: event.id } }
 
     it "returns success" do
       assert_response :success
@@ -31,7 +31,7 @@ describe EventRegistrationsController do
     let(:extra_hab_size) { "S" }
     let(:form_params) { { contact_email: email, hash_name: hash_name, nerd_name: nerd_name, kennel: kennel, food_preference: food_preference, gluten_allergy: gluten_allergy, need_crash_space: need_crash_space, extra_hab: extra_hab, extra_hab_size: extra_hab_size, payment_email: email } }
 
-    before { post :create, { special_event_id: event.id, event_registration: form_params } }
+    before { post :create, params: { special_event_id: event.id, event_registration: form_params } }
 
     it "creates an event registration" do
       expect(EventRegistration.first).to be_present
