@@ -1,4 +1,4 @@
-class CreateSiteSections < ActiveRecord::Migration
+class CreateSiteSections < ActiveRecord::Migration[4.2]
   def change
     create_table :site_sections do |t|
       t.string :tag

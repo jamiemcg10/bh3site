@@ -1,4 +1,4 @@
-class SpecialEvent < ActiveRecord::Base
+class SpecialEvent < ApplicationRecord
   FOOD_OPTIONS = ["Carnivore", "Vegetarian"]
   HAB_SIZES = ["S", "M", "L", "XL"]
 

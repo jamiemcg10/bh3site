@@ -1,4 +1,4 @@
-class EventRegistration < ActiveRecord::Base
+class EventRegistration < ApplicationRecord
   validates :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, presence: true
 
   enum status: [:active, :deleted]
