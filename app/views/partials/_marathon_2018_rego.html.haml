@@ -1,0 +1,30 @@
+- if flash
+  %h3= flash[:failure]
+%h3 Marathon 2017 Rego Form
+= simple_form_for [@event, @event_registration] do |f|
+  = f.input  :hash_name
+  = f.input  :nerd_name
+  = f.input  :contact_email
+  = f.input  :payment_email, label: "Payment Email (for PayPal)"
+  = f.input  :kennel
+  = f.label  :food_preference
+  = f.select :food_preference, SpecialEvent::FOOD_OPTIONS
+  %br
+  = f.check_box :gluten_allergy, {}, 1, 0
+  = f.label "I have a gluten allergy!"
+  %br
+  = f.check_box :need_crash_space, {}, 1, 0
+  = f.label "I need crash space!"
+  %br
+  -# - if @event.extra_hab_type
+  -#   %span.extra-hab-checkbox
+  -#     = f.check_box  :extra_hab, {}, "#{@event.extra_hab_type}", nil
+  -#   = f.label  "I want to purchase a #{@event.url_code.humanize} #{@event.extra_hab_type} for $#{@event.extra_hab_price.to_i}, which includes free tax prepration services and will be added to my rego price at checkout!"
+  -#   %br
+  -#   %span.extra-hab-size
+  -#     = f.label  "#{@event.extra_hab_type} Size"
+  -#     = f.select :extra_hab_size, SpecialEvent::HAB_SIZES
+
+  %p You will be redirected to PayPal after registering to, you know, pay.
+  %br
+  = f.button :submit, "Register for BH3 Marathon Hash 2018"

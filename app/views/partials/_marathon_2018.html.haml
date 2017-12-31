@@ -1,0 +1,86 @@
+- if flash[:notice]
+  %h1
+    = flash[:notice]
+%br
+%p There's only two sure things in life: death and taxes.
+%h1 Marathon 2018: Tax Day!
+%p Are you a horny CPA? Are you trying to maximize your deductions?
+
+%h2= link_to "Rego Now!", new_special_event_event_registration_path(@event)
+
+%br
+
+%p Event: April 15
+
+%h3 Rego price: $89
+%p "Check #{link_to "the BH3 calendar", "http://www.bostonhash.com/calendar"} for schedule updates."
+%p **If you are ever lost or unsure where to go call or text the hotline at (617) 499-4835**
+
+%br
+
+%h3 Schedule
+%p{ style: "color: red;" } Friday 4/14 Cumbridge Beer mile and pub crawl
+%p When: 6:30HST (Beer mile) 8PM (Pub crawl)
+%p Where: (new location)North Point Park, Boston. (Link to exact location to be posted on the calendar)
+%p How much: $5 if you run the beer mile
+%p -----------Pub crawl bars will be walking distance from North Station and on the calendar soon--------
+
+%br
+
+%p{ style: "color: red;" } Saturday 4/15 BH3 Pre-Historic Hash Marathon Main Event!
+%p ***Check in and pick up your give-away when you arrive***
+%p When: Noon if you want to brunch, 1PM if you want your free beer, Chalk talk starts at 1:30
+%p Where: The Kinsale Irish Pub, 2 Center Plaza, Boston. Closest T stop Government Center
+%p{ style: "color: green;"} YOU WILL NEED YOUR ID TO GET INTO THE ON-IN. If you are not a US citizen you will need your passport as your ID.
+
+%br
+
+%p{ style: "color: red;" } Sunday 4/16 Pink Taco Fatboy Trail
+%p When: Noon HST (Get brunch if you want it and hares away at 1:30)
+%p Where: Tavern in the Square Porter, 1815 Massachusetts Ave, Cambridge
+%p What: There will be a 3-4 mile running trail and a shorter walkers trail. Beer checks will be together.
+
+%br
+
+%p{ style: "color: red;" }Monday 4/17 Watch the Actual Boston Marathon at mile 20
+%p When: Elite runners go by around 11AM, normal runners around noon What: Hand out beer to the runners and hang out!
+%p Food and beer provided by the hash
+%p Where: Near mile 20 in Newton. Trail is marked from #{link_to "the Newton Centre T stop", "https://goo.gl/maps/9UrSBZVL7iQ2"}.
+
+%br
+
+%p{ style: "color: red;" }Monday 4/17 Ballbuster Trail!
+%p What: Run a 6.9+ mile long trail that ends at mile 20!
+%p When: 10:00 HST, hare(s) away 10:15, pack 10:30
+%p Where: JFK park. Prelube will be marked from Harvard T
+%p How much: $1 and a six pack
+%p **Expect to get to mile 20 during the later waves of runners going by**
+
+%br
+
+%h3 Running the real r*cist Boston marathon?
+%p You're eligible for a 26% discount on your rego price!
+%p= ("Email #{mail_to 'orgasmfamine@gmail.com', "Orgasm Famine", subject: 'BH3 Marathon Rego Discount'} for details!").html_safe
+
+%br
+
+%h3 Questions?
+%p= mail_to "orgasmfamine@gmail.com", "Email Orgasm Famine", subject: "BH3 Marathon 2016"
+
+%br
+
+%h2= link_to "Rego Now!", new_special_event_event_registration_path(@event)
+
+%br
+
+%h3 Who's Cumming
+.whos-coming-list{ style: "width: 40%;margin-left: auto;margin-right: auto;" }
+  %table
+    %tbody
+      %tr
+        %td{ style: "align: center;font-weight: bold;"} Hasher
+        %td{ style: "align: center;font-weight: bold;"} Kennel
+      - @event.event_registrations.order(:id).each do |rego|
+        %tr
+          %td #{rego.hash_name}
+          %td #{rego.kennel}
