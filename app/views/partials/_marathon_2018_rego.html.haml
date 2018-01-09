@@ -19,6 +19,9 @@
   = f.check_box :need_crash_space, {}, 1, 0
   = f.label "I need crash space!"
   %br
+  = f.check_box :have_crash_space, {}, 1, 0
+  = f.label "I have crash space!"
+  %br
   -# - if @event.extra_hab_type
   -#   %span.extra-hab-checkbox
   -#     = f.check_box  :extra_hab, {}, "#{@event.extra_hab_type}", nil
