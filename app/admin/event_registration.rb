@@ -1,7 +1,7 @@
 ActiveAdmin.register EventRegistration do
   ACTIVE = 0
 
-  permit_params :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, :food_preference, :gluten_allergy, :need_crash_space, :extra_hab, :extra_hab_size, :registration_date, :paid
+  permit_params :contact_email, :hash_name, :nerd_name, :kennel, :payment_email, :food_preference, :gluten_allergy, :dairy_free, :need_crash_space, :have_crash_space, :extra_hab, :extra_hab_size, :registration_date, :paid
 
   actions :all, except: :destroy
 
@@ -29,7 +29,9 @@ ActiveAdmin.register EventRegistration do
   filter :payment_email
   filter :food_preference
   filter :gluten_allergy
+  filter :dairy_free
   filter :need_crash_space
+  filter :have_crash_space
   filter :extra_hab
   filter :extra_hab_size
   filter :registration_date
@@ -46,7 +48,9 @@ ActiveAdmin.register EventRegistration do
     column :payment_email
     column :food_preference
     column :gluten_allergy
+    column :dairy_Free
     column :need_crash_space
+    column :have_crash_space
     column :extra_hab
     column :extra_hab_size
     column :registration_date

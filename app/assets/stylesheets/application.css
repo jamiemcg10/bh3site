@@ -41,6 +41,11 @@ pre {
   width: 100%;
 }
 
+/* Autoscale images on mobile */
+img {
+  max-width: 90%
+}
+
 /* need this pre stuff so pre tags don't do scrollbars on diff browsers */
 pre {
  white-space: pre-wrap !important;       /* css-3 */
