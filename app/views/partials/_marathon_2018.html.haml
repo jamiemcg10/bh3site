@@ -1,0 +1,76 @@
+- if flash[:notice]
+  %h1
+    = flash[:notice]
+%br
+
+%p The Boston Hash House Harriers present 
+
+%h1 Hashy Potter and the Wicked Magical Marathon
+
+= image_tag "marathon_2018_logo.png"
+
+%p April 14 - 16, 2018
+
+%p I solemnly swear we are up to no good. Get those wands at the ready and start practicing your swish and flicks. The hash is taking the rage train to Hogwarts! Get sorted into your house, earn house points and maybe win the Rage cup. It’s time for a butter beer down down.
+
+%h2= link_to "Rego Now!", new_special_event_event_registration_path(@event)
+
+%br
+
+%h3 Rego pricing:
+%p $69 through February 9th
+%p $79 through March 31st
+%p $89 thereafter
+
+%h3 Your $$$ gets you THREE DAYS OF EVENTS!
+
+%p Saturday, April 14: Trail, Beer, Circle, Dinner, Give-Away, Dancing
+
+%p Sunday, April 15: Fatboy trail, beer, circle
+
+%p Monday, April 16: Watch the Marathon at Mile 20 with beer and food provided
+
+%br
+
+%p Get to Boston on Friday the 13th and kick the weekend off with a pub crawl!
+
+%p Will you be in Boston earlier? There will be prelube events for the entire week before the event
+
+%br
+
+%p We will do our best to find crash space travel hashers, but space is limited. Please indicate that you'll need it when registering or if you are able to host travel hashers.
+
+%br
+
+%p Running the real Boston marathon?
+%p 10 points for Gryffindor! You're eligible for a 26% discount on your rego price!
+
+%br
+
+%p= mail_to "egrafeld@gmail.com", "Email Udder Whore for Questions/Details", subject: "BH3 Marathon 2018"
+%p Check #{link_to "the BH3 calendar", "http://www.bostonhash.com/calendar"} for schedule updates and info on trails leading up to the main event!
+%p **If you are ever lost or unsure where to go, text the hotline at (617) 499-4835**
+
+%br
+
+%h2= link_to "Rego Now!", new_special_event_event_registration_path(@event)
+
+%br
+
+%p By registering you are agreeing to take responsibility for your own actions during the entire weekend of events. That includes treating our city, members of the hash, and greater community with respect.  Any inappropriate behavior can result in forfeiting your rego, being banned from the Boston Hash, or being reported to the authorities. 
+
+%p As always, this is a 21+ event
+
+%br
+
+%h3 Who's Cumming
+.whos-coming-list{ style: "width: 40%;margin-left: auto;margin-right: auto;" }
+  %table
+    %tbody
+      %tr
+        %td{ style: "align: center;font-weight: bold;"} Hasher
+        %td{ style: "align: center;font-weight: bold;"} Kennel
+      - @event.event_registrations.order(:id).each do |rego|
+        %tr
+          %td #{rego.hash_name}
+          %td #{rego.kennel}
