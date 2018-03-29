@@ -25,3 +25,17 @@ if !SpecialEvent.find_by(name: "Boston H3 Marathon 2017")
     extra_hab_price: nil
   )
 end
+
+# Create the BH3 Marathon 2018 event unless it exists
+if !SpecialEvent.find_by(name: "Boston H3 Marathon 2018: Hashy Potter and the Wicked Magical Marathon")
+  SpecialEvent.create(
+    name: "Boston H3 Marathon 2018: Hashy Potter and the Wicked Magical Marathon",
+    date: Date.parse("2018-04-14"),
+    url_code: "marathon_2018",
+    tiered_rego_prices: [69, 79],
+    tiered_rego_dates: [Date.parse("2018-02-09"), Date.parse("2018-03-31")],
+    full_rego_price: 89,
+    extra_hab_type: nil,
+    extra_hab_price: nil
+  )
+end
