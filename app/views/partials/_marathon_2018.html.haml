@@ -70,7 +70,7 @@
       %tr
         %td{ style: "align: center;font-weight: bold;"} Hasher
         %td{ style: "align: center;font-weight: bold;"} Kennel
-      - @event.event_registrations.order(:id).each do |rego|
+      - @event.event_registrations.where(status: ACTIVE).order(:id).each do |rego|
         %tr
           %td #{rego.hash_name}
           %td #{rego.kennel}
