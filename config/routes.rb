@@ -24,6 +24,7 @@ Bh3site::Application.routes.draw do
   get "more/away" => "more#away"
   get "more/trail" => "more#trail"
   get "more/habadashery" => "more#habadashery"
+  get "more/policy" => "more#policy"
 
 #posts route
   get "posts/:page_number" => "posts#index", as: :hashtrash
