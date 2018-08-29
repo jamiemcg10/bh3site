@@ -1,52 +1,16 @@
-<% content_for :head do %>
-<script type="text/javascript">
-var map;
-var init = 0;
+<div>
+    <div>
+      <h4 class="content-subhead">Join us on our next hash!</h4>
+      <h3><%= raw @next_hash.title%></h3>
+      <h4>When:  <%=@next_hash.when.to_formatted_s(:long)%> (HST) </h4>
+      <h4>Where: <a id="where" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyC_q_6si3Ys8tH5RKMe_qG1NhRzRnIycf0&origin=...&destination=<%= raw @next_hash.where%>" target="_new"><%= raw @next_hash.where%></a></h4>
+      <h4>Details:</h4><pre><%=auto_link(@next_hash.description,:html => { :target => '_blank' })%></pre>
+    </div>
+</div>
 
-function initMap() {
-  if(init == 1) return; 
-  init = 1;
-  geocoder = new google.maps.Geocoder();
-  var mapOptions = {
-    zoom: 15,
-    center: new google.maps.LatLng(42.3581, -71.0636), //default boston lat & long
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scrollwheel: false,
-    navigationControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    draggable: false
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  <% if @next_hash.where != "Boston, MA" and @next_hash.latitude != nil and @next_hash.longitude != nil then  %>
-  codeAddress(<%=@next_hash.latitude%>,<%=@next_hash.longitude%>);
-  <% end %>
-}
-
-function setMapLink(latitude,longitude){
-  var url = "http://maps.google.com/?saddr=&daddr=" + latitude + "," + longitude;
-  $("#where").attr('href',url);
-}
-function codeAddress(latitude,longitude) {
-  var spot = new google.maps.LatLng(latitude,longitude);
-  setMapLink(latitude,longitude);
-}
-
-</script>
-<% end %>
-        <div>
-            <div>
-                <h4 class="content-subhead">Join us on our next hash!</h4>
-				<h3><%= raw @next_hash.title%></h3>
-                <h4>When:  <%=@next_hash.when.to_formatted_s(:long)%> (HST) </h4>
-				<h4>Where: <a id="where" href="#" target="_new"><%= raw @next_hash.where%></a></h4>
-				<h4>Details:</h4><pre><%=auto_link(@next_hash.description,:html => { :target => '_blank' })%></pre>
-            </div>
-        </div>
-
-        <div class="full">
-          <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC_q_6si3Ys8tH5RKMe_qG1NhRzRnIycf0&q=<%= raw @next_hash.where%>">
-          </iframe>
-        </div>
+<div class="full">
+  <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC_q_6si3Ys8tH5RKMe_qG1NhRzRnIycf0&q=<%= raw @next_hash.where%>">
+  </iframe>
+</div>
 <% content_for :footer do %>
 <% end %>
