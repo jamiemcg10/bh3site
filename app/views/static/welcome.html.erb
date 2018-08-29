@@ -29,12 +29,6 @@ function setMapLink(latitude,longitude){
 }
 function codeAddress(latitude,longitude) {
   var spot = new google.maps.LatLng(latitude,longitude);
-  map.setCenter(spot);
-    var markerE = new google.maps.Marker({
-        map: map,
-        position: spot
-    });
-
   setMapLink(latitude,longitude);
 }
 
@@ -51,13 +45,8 @@ function codeAddress(latitude,longitude) {
         </div>
 
         <div class="full">
-            <div>
-				<div id="map-canvas"></div>
-            </div>
+          <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC_q_6si3Ys8tH5RKMe_qG1NhRzRnIycf0&q=<%= raw @next_hash.where%>">
+          </iframe>
         </div>
 <% content_for :footer do %>
-
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3&callback=initMap"></script>
-
-
 <% end %>
