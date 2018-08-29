@@ -3,7 +3,7 @@
       <h4 class="content-subhead">Join us on our next hash!</h4>
       <h3><%= raw @next_hash.title%></h3>
       <h4>When:  <%=@next_hash.when.to_formatted_s(:long)%> (HST) </h4>
-      <h4>Where: <a id="where" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyC_q_6si3Ys8tH5RKMe_qG1NhRzRnIycf0&origin=...&destination=<%= raw @next_hash.where%>" target="_new"><%= raw @next_hash.where%></a></h4>
+      <h4>Where: <a id="where" href="https://www.google.com/maps/dir/?api=1&origin=&destination=<%= raw @next_hash.where.sub! 'United States',''%>" target="_new"><%= raw @next_hash.where%></a></h4>
       <h4>Details:</h4><pre><%=auto_link(@next_hash.description,:html => { :target => '_blank' })%></pre>
     </div>
 </div>
