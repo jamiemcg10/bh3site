@@ -46,7 +46,7 @@ class Event
   
   def where
     @where = (@where || "")
-    if @where.downcase.strip.match(/^tbd/)  or @where.length == 0 then @where = 'Boston, MA' end
+    if @where.downcase.strip.match(/^tbd/)  or @where.length == 0 then @where = 'Boston, MA United States' end
     @where
   end
   
