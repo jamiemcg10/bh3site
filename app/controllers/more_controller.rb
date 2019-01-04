@@ -10,4 +10,7 @@ class MoreController < ApplicationController
   
   def away
   end
+
+  def policy
+  end
 end
