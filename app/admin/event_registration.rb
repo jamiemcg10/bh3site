@@ -48,7 +48,7 @@ ActiveAdmin.register EventRegistration do
     column :payment_email
     column :food_preference
     column :gluten_allergy
-    column :dairy_Free
+    column :dairy_free
     column :need_crash_space
     column :have_crash_space
     column :extra_hab

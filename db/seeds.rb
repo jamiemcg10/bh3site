@@ -39,3 +39,17 @@ if !SpecialEvent.find_by(name: "Boston H3 Marathon 2018: Hashy Potter and the Wi
     extra_hab_price: nil
   )
 end
+
+# Create the BH3 Marathon 2019 event unless it exists
+if !SpecialEvent.find_by(name: "Boston H3 Marathon 2019 - Game of Boners: A Song of Fireball and Smirnoff Ice")
+  SpecialEvent.create(
+    name: "Boston H3 Marathon 2019 - Game of Boners: A Song of Fireball and Smirnoff Ice")",
+    date: Date.parse("2018-04-13"),
+    url_code: "marathon_2019",
+    tiered_rego_prices: [69, 79],
+    tiered_rego_dates: [Date.parse("2018-02-08"), Date.parse("2018-03-31")],
+    full_rego_price: 89,
+    extra_hab_type: nil,
+    extra_hab_price: nil
+  )
+end
