@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.11'
 
 # Use sqlite3 as the database for Active Record
 group :development,:test do
@@ -57,7 +57,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'nokogiri'
+gem "nokogiri", ">= 1.8.5"
 gem "geocoder"
 gem "rails_autolink"
 gem "haml"
