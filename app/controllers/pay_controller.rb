@@ -21,7 +21,7 @@ class PayController < ApplicationController
 
     raise "IPN not validated" unless validate_ipn(request.raw_post) == true
 
-    mark_rego_as_paid(payer_email, rego_id) if payment_status == "Completed"
+    mark_rego_as_paid(rego_id) if payment_status == "Completed"
 
     render text: params
   end
@@ -39,11 +39,11 @@ class PayController < ApplicationController
     params.permit(:payment_status, :payer_email, :txn_id, :mc_gross, :item_name, :item_number)
   end
 
-  def mark_rego_as_paid(payer_email, rego_id)
-    rego = EventRegistration.find_by payment_email: payer_email, id: rego_id.to_i
+  def mark_rego_as_paid(rego_id)
+    rego = EventRegistration.find_by id: rego_id.to_i
     rego.update_attributes(paid: true)
   rescue NoMethodError
-    puts "IPN error for rego id: #{rego_id} and payment_email: #{payer_email}"
+    puts "IPN error for rego id: #{rego_id}"
     raise ActiveRecord::RecordNotFound
   end
 
