@@ -61,6 +61,7 @@ gem "nokogiri", ">= 1.10.4"
 gem "geocoder"
 gem "rails_autolink"
 gem "figaro"
+gem "simple_form"
 
 
 # Use ActiveModel has_secure_password
