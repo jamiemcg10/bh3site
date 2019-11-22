@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Specify ruby version for heroku
-ruby '2.3.0'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.11'
@@ -57,7 +57,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "nokogiri", ">= 1.8.5"
+gem "nokogiri", ">= 1.10.4"
 gem "geocoder"
 gem "rails_autolink"
 gem "haml"

@@ -96,7 +96,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
-    nokogiri (1.10.1)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     pg (0.17.1)
     pry (0.10.1)
@@ -223,7 +223,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   json
-  nokogiri (>= 1.8.5)
+  nokogiri (>= 1.10.4)
   pg
   pry-rails
   rails (= 4.2.11)
@@ -242,7 +242,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   1.16.4
+   1.17.3
