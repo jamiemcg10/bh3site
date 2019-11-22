@@ -60,8 +60,6 @@ end
 gem "nokogiri", ">= 1.10.4"
 gem "geocoder"
 gem "rails_autolink"
-gem "haml"
-gem "simple_form"
 gem "figaro"
 
 
