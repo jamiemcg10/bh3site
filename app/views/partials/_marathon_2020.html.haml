@@ -1,0 +1,81 @@
+- if flash[:notice]
+  %h1
+    = flash[:notice]
+%br
+
+%p The Boston Hash House Harriers present 
+
+%h1 Boston H3's - The Flying 'Marathon' Circus
+
+%p April 17 - 20, 2020
+
+%p Strange women lying in ponds distributing beer, is no basis for a major event! Do we care? NO! After all there's nothing wrong with you that an extensive trail can't prolong. Join us for our Marathon main event, where we'll we seek the holy grails (of beer), quest for shrubberies (and shots), and chase hares shouting "ni" across our fair city.
+
+%p And now for something completely different.
+
+%h2= link_to "Rego Now!", new_special_event_event_registration_path(@event)
+
+%br
+
+%h3 Your $$$ gets you FOUR DAYS OF EVENTS!
+
+%p Friday, April 17: BEER/SILLY WALK MILE (and pay as you go bar-crawl)
+
+%p Saturday, April 18: Trail, Beer, Circle, Dinner, Give-Away, Dancing
+
+%p Sunday, April 19: Fatboy trail, beer, circle
+
+%p Monday, April 20: Watch the Marathon at Mile 20 with beer and food provided
+
+%br
+
+%h3 Rego pricing:
+
+%p $69 through February 8th
+%p $99 through March 31st
+%p $109 thereafter
+%p $120 DAY OF 
+
+%br
+
+%h3 C*mming Early?
+
+%p We’ve got huge tracts of… trails. Join us starting Sunday, April 10 when we kick-off this week of shenanigans.  
+
+%p Check #{link_to "the BH3 calendar", "http://www.bostonhash.com/calendar"} for schedule updates and info on trails leading up to the main event!
+
+%br
+
+%h3 Coming by way of African or European Swallow? 
+
+%p We will do our best to find crash space travel hashers, but space is limited. Please indicate that you'll need it when registering or if you are able to host travel hashers.
+
+%br
+
+%h3 Running the other, less fun Boston marathon?
+
+%p Could be worse, you could be running a cajun! You're eligible for a 26.2% discount on your rego price.
+
+%p= mail_to "BlondieMcFcksalot@gmail.com", "Email Blondie for detrails!", subject: "BH3 Marathon 2020 - R*cists"
+
+%br
+
+%h2= link_to "Rego Now!", new_special_event_event_registration_path(@event)
+
+%p By registering you are agreeing to take responsibility for your own actions during the entire weekend of events. That includes treating our city, members of the hash, and greater community with respect.  Any inappropriate behavior can result in forfeiting your rego, being banned from the Boston Hash, or being reported to the authorities. 
+
+%p As always, this is a 21+event
+
+%br
+
+%h3 Who's Cumming
+.whos-coming-list{ style: "width: 40%;margin-left: auto;margin-right: auto;" }
+  %table
+    %tbody
+      %tr
+        %td{ style: "align: center;font-weight: bold;"} Hasher
+        %td{ style: "align: center;font-weight: bold;"} Kennel
+      - @event.event_registrations.where(status: ACTIVE).order(:id).each do |rego|
+        %tr
+          %td #{rego.hash_name}
+          %td #{rego.kennel}
