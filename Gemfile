@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Specify ruby version for heroku
-ruby '2.3.0'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.11'
 
 # Use sqlite3 as the database for Active Record
 group :development,:test do
@@ -57,14 +57,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'nokogiri'
+gem "nokogiri", ">= 1.10.4"
 gem "geocoder"
 gem "rails_autolink"
-gem "haml"
-gem "simple_form"
 gem "figaro"
-gem "activeadmin", '~> 1.0.0.pre2'
-gem "devise"
+gem "simple_form"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
