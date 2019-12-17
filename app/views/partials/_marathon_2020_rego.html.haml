@@ -7,14 +7,16 @@
   = f.input  :nerd_name
   = f.input  :contact_email
   = f.input  :payment_email, label: "Payment Email (for PayPal)"
-  = f.label  "Would you like Spam, Spam, Spam, Spam, Spam, Spam, baked beans, Spam, Spam, Spam and Spam, or Spam, Spam, Spam, Spam, Spam, Spam, baked beans, Spam, Spam, Spam and Spam, hold the Spam?"
+  = f.label  "Dietary preference, i.e. would you like Spam, Spam, Spam, Spam, Spam, Spam, baked beans, Spam, Spam, Spam and Spam, or Spam, Spam, Spam, Spam, Spam, Spam, baked beans, Spam, Spam, Spam and Spam, hold the Spam?"
   = f.select :food_preference, SpecialEvent::FOOD_OPTIONS
+  %br
   %br
   = f.check_box :gluten_allergy, {}, 1, 0
   = f.label "I have a gluten allergy!"
   %br
   = f.check_box :dairy_free, {}, 1, 0
   = f.label "I am dairy free!"
+  %br
   %br
   = f.check_box :need_crash_space, {}, 1, 0
   = f.label "I need crash space!"
@@ -28,8 +30,8 @@
   -#   = f.label  "I want to purchase a #{@event.url_code.humanize} #{@event.extra_hab_type} for $#{@event.extra_hab_price.to_i}, which will be added to my rego price at checkout!"
   -#   %br
   -#   %span.extra-hab-size
-  -#     = f.label  "#{@event.extra_hab_type} Size"
-  -#     = f.select :extra_hab_size, SpecialEvent::HAB_SIZES
+  = f.label  "Shirt Size, for a giveaway, maybe?"
+  = f.select :extra_hab_size, SpecialEvent::HAB_SIZES
 
   %p You will be redirected to PayPal after registering to, you know, pay.
   %br
