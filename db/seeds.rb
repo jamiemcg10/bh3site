@@ -53,3 +53,17 @@ if !SpecialEvent.find_by(name: "Boston H3 Marathon 2019 - Game of Boners: A Song
     extra_hab_price: nil
   )
 end
+
+# Create the BH3 Marathon 2020 event unless it exists
+if !SpecialEvent.find_by(name: "Boston H3's - The Flying 'Marathon' Circus - 2020")
+  SpecialEvent.create(
+    name: "Boston H3's - The Flying 'Marathon' Circus - 2020",
+    date: Date.parse("2020-04-18"),
+    url_code: "marathon_2020",
+    tiered_rego_prices: [69, 99],
+    tiered_rego_dates: [Date.parse("2020-02-08"), Date.parse("2020-03-31")],
+    full_rego_price: 109,
+    extra_hab_type: nil,
+    extra_hab_price: nil
+  )
+end
