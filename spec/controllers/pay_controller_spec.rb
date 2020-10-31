@@ -7,7 +7,7 @@ describe PayController do
   let(:return_url) { "http://localhost:3000/paypal/success/#{event.url_code}" }
 
 	describe "GET #index" do
-    before { get :index, price: price, event_name: event.url_code, rego_id: rego.id.to_s, return_url: return_url }
+    before { get :index, :params => {:price => price, :event_name => event.url_code, :rego_id => rego.id.to_s, :return_url => return_url}  }
 
 		it "responds successfully with a paypal redirect" do
       expect(response.status).to eq 302
@@ -28,12 +28,12 @@ describe PayController do
   describe "POST #catch" do
     let(:payment_status) { "Completed" }
     let(:rego_id) { rego.id }
-    let(:paypal_params) { { payer_email: rego.payment_email, txn_id: 1, mc_gross: price, item_name: event.url_code, item_number: rego_id, payment_status: payment_status } }
+    let(:paypal_params) { { :payer_email => rego.payment_email, :txn_id => 1, :mc_gross => price, :item_name => event.url_code, :item_number => rego_id, :payment_status => payment_status } }
 
     before do
       allow($stdout).to receive(:write)
       allow_any_instance_of(PayController).to receive(:validate_ipn).and_return(true) 
-      post :catch, paypal_params
+      post :catch, :params => paypal_params
     end
 
     it "responds with success" do
