@@ -14,6 +14,7 @@ class StaticController < ApplicationController
   end
   
   def calendar
+    @api_key = ENV["GOOGLE_API_KEY"]
   end
   
   private 
