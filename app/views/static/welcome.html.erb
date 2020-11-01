@@ -15,6 +15,7 @@
 
     <p>ON-ON, Chunderellie and Shart</p>
   </div>
+  <hr />
   <div>
       <h4 class="content-subhead">Join us on our next hash!</h4>
       <% if @next_hash != nil %>
@@ -28,7 +29,7 @@
 
 <% if @next_hash != nil %>
 <div class="full">
-  <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBpRgYGNS0WkDcRC9VsMW59tKL5UzgE0o&q=<%= raw @where%>">
+  <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?zoom=15&key=<%= raw @api_key %>&q=<%= raw @where%>">
   </iframe>
 </div>
 <% end %>
