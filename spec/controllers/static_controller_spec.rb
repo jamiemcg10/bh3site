@@ -16,7 +16,7 @@ describe StaticController do
     it_behaves_like "it renders the welcome template"
 
     context "passing an id param to get a specific index" do
-      before { get :welcome, id: "1" }
+      before { get :welcome, :params => {:id => "1"} }
 
       it_behaves_like "it responds with success"
       it_behaves_like "it renders the welcome template"
