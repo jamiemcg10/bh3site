@@ -17,16 +17,20 @@
   </div>
   <div>
       <h4 class="content-subhead">Join us on our next hash!</h4>
+      <% if @next_hash != nil %>
       <h3><%= raw @next_hash.title%></h3>
       <h4>When:  <%=@next_hash.when.to_formatted_s(:long)%> (HST) </h4>
       <h4>Where: <a id="where" href="https://www.google.com/maps/dir/?api=1&origin=&destination=<%= raw @next_hash.where.sub! 'United States',''%>" target="_new"><%= raw @next_hash.where%></a></h4>
       <h4>Details:</h4><pre><%=auto_link(@next_hash.description,:html => { :target => '_blank' })%></pre>
+      <% end %>
     </div>
 </div>
 
+<% if @next_hash != nil %>
 <div class="full">
-  <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC_q_6si3Ys8tH5RKMe_qG1NhRzRnIycf0&q=<%= raw @next_hash.where%>">
+  <iframe id="map-canvas" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBpRgYGNS0WkDcRC9VsMW59tKL5UzgE0o&q=<%= raw @where%>">
   </iframe>
 </div>
+<% end %>
 <% content_for :footer do %>
 <% end %>

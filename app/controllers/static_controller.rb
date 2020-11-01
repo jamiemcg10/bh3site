@@ -1,10 +1,16 @@
 require "open-uri"
 
 class StaticController < ApplicationController
-  CAL_URL = "https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?key=AIzaSyCMZCb6nbsoAyOwuBDD2pRrvMf1rjYSANc&futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin="
+  CAL_URL = "https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?key=AIzaSyCBpRgYGNS0WkDcRC9VsMW59tKL5UzgE0o&futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin="
 
   def welcome
     @next_hash = get_next_hash(id)
+    if @next_hash != nil
+      @where = @next_hash.where
+    else
+      @where = 'Boston, MA'
+    end
+    
   end
   
   def more
@@ -14,7 +20,7 @@ class StaticController < ApplicationController
   end
   
   def calendar
-    @api_key = ENV["GOOGLE_API_KEY"]
+    @api_key = 'AIzaSyCBpRgYGNS0WkDcRC9VsMW59tKL5UzgE0o' #'ENV["GOOGLE_API_KEY"]'
   end
   
   private 
@@ -24,6 +30,7 @@ class StaticController < ApplicationController
   end
 
   def get_next_hash(id)
+      
       url = CAL_URL + Time.zone.now.beginning_of_day.iso8601
       cal_results = open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
       ev = JSON.parse(cal_results)["items"][id]
