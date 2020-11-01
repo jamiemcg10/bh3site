@@ -19,7 +19,7 @@ class StaticController < ApplicationController
   end
   
   def calendar
-    @api_key =  CLIENT_API_KEY #'ENV['GOOGLE_API_KEY']'
+    @api_key =  CLIENT_API_KEY 
   end
   
   private 
@@ -31,7 +31,6 @@ class StaticController < ApplicationController
   def get_next_hash(id)
       
       url = calendar_url
-      puts "cal url == " + url
       cal_results = open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
       ev = JSON.parse(cal_results)['items'][id]
       next_ev = Event.new ev
