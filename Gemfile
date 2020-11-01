@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Specify ruby version for heroku
-ruby '2.6.3'
+ruby '2.6.6'
 
 gem 'rails', '5.2.4.4'
 
