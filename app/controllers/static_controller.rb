@@ -3,18 +3,13 @@ require 'open-uri'
 class StaticController < ApplicationController
   CAL_URL = 'https://www.googleapis.com/calendar/v3/calendars/bostonhash@gmail.com/events?futureevents=true&orderby=starttime&sortorder=a&singleevents=true&showDelete=false&singleEvents=true&orderBy=startTime&timeMin='
 
-  CLIENT_API_KEY = 'AIzaSyCBpRgYGNS0WkDcRC9VsMW59tKL5UzgE0o'
-  SERVER_API_KEY = 'AIzaSyAXn8LFippkNm2MtluPBppBbrVLxczBro4'
+  CLIENT_API_KEY = ENV['GOOGLE_CLIENT_API_KEY']
+  SERVER_API_KEY = ENV['GOOGLE_SERVER_API_KEY']
 
 
   def welcome
+    @api_key =  CLIENT_API_KEY
     @next_hash = get_next_hash(id)
-    if @next_hash != nil
-      @where = @next_hash.where
-    else
-      @where = 'Boston, MA'
-    end
-    
   end
   
   def more
