@@ -15,12 +15,15 @@ group :development,:test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'sqlite3'
+  gem 'tzinfo-data', platforms: [:mswin, :x64_mingw]
 end
 
 group :production do
   gem 'pg'
   gem 'rails_12factor' # need this for asset compilation on heroku
-  gem 'unicorn'
+  platforms :ruby do 
+    gem 'unicorn'
+  end
 end
 
 # Use SCSS for stylesheets

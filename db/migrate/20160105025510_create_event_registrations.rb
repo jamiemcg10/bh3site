@@ -1,4 +1,4 @@
-class CreateEventRegistrations < ActiveRecord::Migration
+class CreateEventRegistrations < ActiveRecord::Migration[5.2]
   def change
     create_table :event_registrations do |t|
       t.belongs_to :special_event
